@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="D301_LunchToGo.DeliveryPick"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:D301_LunchToGo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="txtDeliveryTime" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Delivery Time:" VerticalAlignment="Top" Height="66" Width="620" FontSize="48" />
+        <TextBlock x:Name="txtChooseTime" HorizontalAlignment="Left" Margin="89,78,0,0" TextWrapping="Wrap" Text="Choose a time for your order to be delivered:" VerticalAlignment="Top" Width="442" FontSize="20"/>
+        <RadioButton x:Name="rbo1145" Content="11:45 a.m. - 12:15 p.m." HorizontalAlignment="Left" Margin="227,165,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbo1215" Content="12:15 p.m. - 12:45 p.m." HorizontalAlignment="Left" Margin="227,202,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbo1245" Content="12:45 p.m. - 1:15 p.m." HorizontalAlignment="Left" Margin="227,239,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbo115" Content="1:15 p.m. - 1:45 p.m." HorizontalAlignment="Left" Margin="227,276,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110"/>
+        <DatePicker HorizontalAlignment="Left" Margin="178,110,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,145,0,0" TextWrapping="Wrap" Text="Note: Only orders made before 10:30 a.m. can be delivered today" VerticalAlignment="Top" FontSize="12" Width="620"/>
+
+    </Grid>
+</Page>

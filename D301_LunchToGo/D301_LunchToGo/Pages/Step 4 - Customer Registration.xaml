@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="D301_LunchToGo.RegistrationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:D301_LunchToGo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="txtEnterDeliveryDetails" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Enter Delivery Details:" VerticalAlignment="Top" FontSize="48" Width="620" />
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="355,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        	<Run Text="Full "/>
+        	<Run Text="N"/>
+        	<Run Text="ame on "/>
+        	<Run Text="C"/>
+        	<Run Text="redit "/>
+        	<Run Text="C"/>
+        	<Run Text="ard:"/>
+        </TextBlock>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="355,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="355,152,0,0" TextWrapping="Wrap" Text="Credit Card Number" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Margin="355,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="355,229,0,0" TextWrapping="Wrap" Text="CCV:" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Margin="355,254,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74"/>
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="466,229,0,0" TextWrapping="Wrap" Text="Expiry Date:" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Margin="466,254,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Height="32"/>
+        <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Margin="535,254,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" Height="32"/>
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="43,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Customer Name:"/>
+        <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Margin="43,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="43,152,0,0" TextWrapping="Wrap" Text="Customer Phone:" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy5" HorizontalAlignment="Left" Margin="43,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+        <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="43,229,0,0" TextWrapping="Wrap" Text="Customer Address" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy6" HorizontalAlignment="Left" Margin="43,254,0,0" TextWrapping="Wrap" AcceptsReturn="True" Text="" VerticalAlignment="Top" Width="245" />
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="355,291,0,0" TextWrapping="Wrap" Text="Note: Payment for the order will be processed at delivery" VerticalAlignment="Top" Width="245" FontSize="9"/>
+        <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110"/>
+
+    </Grid>
+</Page>
