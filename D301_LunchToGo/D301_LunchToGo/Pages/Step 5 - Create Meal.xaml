@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="D301_LunchToGo.Step_5___Create_Meal"
+    x:Class="D301_LunchToGo.StepFive"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:D301_LunchToGo"
@@ -9,8 +9,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="txtCreateMeal" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Create Meal" VerticalAlignment="Top" FontSize="48" Width="620" />
-        <Button x:Name="btnPlaceOrder" Content="Place Order" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110"/>
-        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="btnPlaceOrder" Content="Place Order" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110" Click="btnPlaceOrder_Click"/>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="44,79,0,0" TextWrapping="Wrap" Text="1. Select a Meal:" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="286,79,0,0" TextWrapping="Wrap" Text="2. Modify Meal:" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="487,79,0,0" TextWrapping="Wrap" Text="Cart" VerticalAlignment="Top"/>

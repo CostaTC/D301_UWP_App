@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="D301_LunchToGo.MainPage"
+    x:Class="D301_LunchToGo.StepOne"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:D301_LunchToGo"
@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <Button x:Name="btnStartOrder" Content="Start Order" HorizontalAlignment="Left" Margin="265,286,0,0" VerticalAlignment="Top" BorderBrush="#FF33FFBE" Background="#FF33FFBE" Foreground="White" Height="42" Width="142" FontSize="22"/>
+        <Button x:Name="btnStartOrder" Content="Start Order" HorizontalAlignment="Left" Margin="265,286,0,0" VerticalAlignment="Top" BorderBrush="#FF33FFBE" Background="#FF33FFBE" Foreground="White" Height="42" Width="142" FontSize="22" Click="btnStartOrder_Click"/>
         <Image x:Name="image" HorizontalAlignment="Left" Height="271" Margin="152,10,0,0" VerticalAlignment="Top" Width="355" Source="ms-appx:///Assets/MyAssets/LunchToGo.png"/>
 
     </Grid>

@@ -111,7 +111,7 @@
     <Compile Include="Pages\Step 5 - Create Meal.xaml.cs">
       <DependentUpon>Step 5 - Create Meal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Step 6 - Finish.xaml.cs">
+    <Compile Include="Pages\Step 6 - Finish.xaml.cs">
       <DependentUpon>Step 6 - Finish.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -157,7 +157,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Step 6 - Finish.xaml">
+    <Page Include="Pages\Step 6 - Finish.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,12 +20,21 @@ namespace D301_LunchToGo
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class DeliveryPick : Page
+    public sealed partial class StepTwo : Page
     {
-        public DeliveryPick()
+        public StepTwo()
         {
             this.InitializeComponent();
         }
 
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(StepThree));
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(StepOne));
+        }
     }
 }

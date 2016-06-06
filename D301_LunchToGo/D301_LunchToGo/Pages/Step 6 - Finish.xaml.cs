@@ -20,11 +20,17 @@ namespace D301_LunchToGo
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Step_6___Finish : Page
+    public sealed partial class StepSix : Page
     {
-        public Step_6___Finish()
+        public StepSix()
         {
             this.InitializeComponent();
+        }
+
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
