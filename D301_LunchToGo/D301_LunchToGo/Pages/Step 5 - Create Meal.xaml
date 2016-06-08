@@ -11,17 +11,22 @@
         <TextBlock x:Name="txtCreateMeal" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Create Meal" VerticalAlignment="Top" FontSize="48" Width="620" />
         <Button x:Name="btnPlaceOrder" Content="Place Order" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110" Click="btnPlaceOrder_Click"/>
         <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="44,79,0,0" TextWrapping="Wrap" Text="1. Select a Meal:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="286,79,0,0" TextWrapping="Wrap" Text="2. Modify Meal:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="487,79,0,0" TextWrapping="Wrap" Text="Cart" VerticalAlignment="Top"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="149" Margin="487,104,0,0" VerticalAlignment="Top" Width="143"/>
-        <Button x:Name="button" Content="Clear Order" HorizontalAlignment="Left" Margin="487,253,0,0" VerticalAlignment="Top" Width="143" Height="36"/>
-        <StackPanel HorizontalAlignment="Left" Height="185" Margin="10,104,0,0" VerticalAlignment="Top" Width="188" Background="#FF9621B0"/>
-        <Button x:Name="button1" Content="Add to Order" HorizontalAlignment="Left" Margin="250,253,0,0" VerticalAlignment="Top" Width="174"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="250,104,0,0" TextWrapping="Wrap" Text="Choose Dressing:" VerticalAlignment="Top" Width="174"/>
-        <RadioButton x:Name="radioButton" Content="option one" HorizontalAlignment="Left" Margin="288,129,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="radioButton_Copy" Content="option two" HorizontalAlignment="Left" Margin="288,164,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="radioButton_Copy1" Content="option three" HorizontalAlignment="Left" Margin="288,199,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtStepOne" HorizontalAlignment="Left" Margin="44,79,0,0" TextWrapping="Wrap" Text="1. Select a Meal:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtStepTwo" HorizontalAlignment="Left" Margin="286,79,0,0" TextWrapping="Wrap" Text="2. Modify Meal:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtCart" HorizontalAlignment="Left" Margin="487,79,0,0" TextWrapping="Wrap" Text="Cart" VerticalAlignment="Top"/>
+        <ListBox x:Name="lbxOrders" HorizontalAlignment="Left" Height="149" Margin="487,104,0,0" VerticalAlignment="Top" Width="143"/>
+        <Button x:Name="btnClearOrder" Content="Clear Order" HorizontalAlignment="Left" Margin="487,253,0,0" VerticalAlignment="Top" Width="143" Height="36"/>
+        <StackPanel x:Name="splMeals" HorizontalAlignment="Left" Height="185" Margin="10,104,0,0" VerticalAlignment="Top" Width="188" Background="#FF9621B0">
+            <Image x:Name="imgGreenSalad" Height="47" Source="ms-appx:///Assets/MyAssets/GreenSalad.png"/>
+            <Image x:Name="imgLambKorma" Height="47" Source="ms-appx:///Assets/MyAssets/LambKorma.png"/>
+            <Image x:Name="imgChickenSandwich" Height="47" Source="ms-appx:///Assets/MyAssets/OpenChickenSandwich.png"/>
+            <Image x:Name="imgBeefNoodle" Height="47" Source="ms-appx:///Assets/MyAssets/BeefNoodleSalad.png"/>
+        </StackPanel>
+        <Button x:Name="btnAddToOrder" Content="Add to Order" HorizontalAlignment="Left" Margin="250,253,0,0" VerticalAlignment="Top" Width="174"/>
+        <TextBlock x:Name="txtChoose" HorizontalAlignment="Left" Margin="250,104,0,0" TextWrapping="Wrap" Text="Choose Dressing:" VerticalAlignment="Top" Width="174"/>
+        <RadioButton x:Name="rboOptionOne" Content="option one" HorizontalAlignment="Left" Margin="288,129,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rboOptionTwo" Content="option two" HorizontalAlignment="Left" Margin="288,164,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rboOptionThree" Content="option three" HorizontalAlignment="Left" Margin="288,199,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

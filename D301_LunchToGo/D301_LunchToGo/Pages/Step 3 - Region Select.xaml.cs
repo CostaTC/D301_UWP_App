@@ -25,6 +25,29 @@ namespace D301_LunchToGo
         public StepThree()
         {
             this.InitializeComponent();
+            SetupPage();
+        }
+
+        private void SetupPage()
+        {
+            // If there is a delivery time then set it up else setup default
+            if (OrderManager.Region != null)
+            {
+                List<RadioButton> rButtons = new List<RadioButton>();
+                rButtons.Add(rboWhanganui);
+                rButtons.Add(rboWairarapa);
+                rButtons.Add(rboManawatu);
+
+                foreach (RadioButton r in rButtons)
+                {
+                    if (r.Content.ToString() == OrderManager.Region)
+                        r.IsChecked = true;
+                }
+            }
+            else
+            {
+                rboWhanganui.IsChecked = true;
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -35,6 +58,15 @@ namespace D301_LunchToGo
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StepFour));
+        }
+
+        private void radioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton)
+            {
+                RadioButton r = (RadioButton)sender;
+                OrderManager.Region = r.Content.ToString();
+            }
         }
     }
 }

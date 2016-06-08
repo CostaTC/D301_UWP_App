@@ -22,9 +22,64 @@ namespace D301_LunchToGo
     /// </summary>
     public sealed partial class StepTwo : Page
     {
+
         public StepTwo()
         {
             this.InitializeComponent();
+            CheckDate();
+            SetupPage();  
+        }
+
+        private void SetupPage()
+        {
+            // If there is an order date then set else set as default
+            if (OrderManager.DeliveryDate.Year != 0001)
+            {
+                cdpDatePicker.Date = OrderManager.DeliveryDate;
+            }
+                
+            else
+            {
+                cdpDatePicker.Date = cdpDatePicker.MinDate;
+                DateTimeOffset dt = (DateTimeOffset)cdpDatePicker.Date;
+                OrderManager.DeliveryDate = dt.DateTime;
+            }
+
+            // If there is a delivery time then set it up else setup default
+            if (OrderManager.DeliveryTime != null)
+            {
+                List<RadioButton> rButtons = new List<RadioButton>();
+                rButtons.Add(rbo1145);
+                rButtons.Add(rbo115);
+                rButtons.Add(rbo1215);
+                rButtons.Add(rbo1245);
+
+                foreach (RadioButton r in rButtons)
+                {
+                    if (r.Content.ToString() == OrderManager.DeliveryTime)
+                        r.IsChecked = true;
+                }
+            }
+            else
+            {
+                rbo1145.IsChecked = true;
+            }
+        }
+
+        private void CheckDate()
+        {
+            // If before 10:30am then can order now else min date is set to next day
+            if (DateTime.Now.Hour <= 10)
+            {
+                if (DateTime.Now.Minute <= 30)
+                {
+                    cdpDatePicker.MinDate = DateTime.Now;
+                    return;
+                }
+            }
+
+            cdpDatePicker.MinDate = DateTime.Now.AddDays(1);
+
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
@@ -35,6 +90,21 @@ namespace D301_LunchToGo
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StepOne));
+        }
+
+        private void ChangeDate(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton)
+            {
+                RadioButton r = (RadioButton)sender;
+                OrderManager.DeliveryTime = r.Content.ToString();
+            }
+        }
+
+        private void cdpDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            DateTimeOffset dt = (DateTimeOffset)cdpDatePicker.Date;
+            OrderManager.DeliveryDate = dt.DateTime;
         }
     }
 }

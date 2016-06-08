@@ -30,7 +30,7 @@ namespace D301_LunchToGo
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            
+            Application.Current.Exit();
         }
     }
 }

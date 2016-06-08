@@ -7,17 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="grdPage" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="txtDeliveryTime" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Delivery Time:" VerticalAlignment="Top" Height="66" Width="620" FontSize="48" />
         <TextBlock x:Name="txtChooseTime" HorizontalAlignment="Left" Margin="89,78,0,0" TextWrapping="Wrap" Text="Choose a time for your order to be delivered:" VerticalAlignment="Top" Width="442" FontSize="20"/>
-        <RadioButton x:Name="rbo1145" Content="11:45 a.m. - 12:15 p.m." HorizontalAlignment="Left" Margin="227,165,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="rbo1215" Content="12:15 p.m. - 12:45 p.m." HorizontalAlignment="Left" Margin="227,202,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="rbo1245" Content="12:45 p.m. - 1:15 p.m." HorizontalAlignment="Left" Margin="227,239,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="rbo115" Content="1:15 p.m. - 1:45 p.m." HorizontalAlignment="Left" Margin="227,276,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbo1145" Content="11:45 a.m. - 12:15 p.m." HorizontalAlignment="Left" Margin="227,165,0,0" VerticalAlignment="Top" Checked="ChangeDate"/>
+        <RadioButton x:Name="rbo1215" Content="12:15 p.m. - 12:45 p.m." HorizontalAlignment="Left" Margin="227,202,0,0" VerticalAlignment="Top" Checked="ChangeDate"/>
+        <RadioButton x:Name="rbo1245" Content="12:45 p.m. - 1:15 p.m." HorizontalAlignment="Left" Margin="227,239,0,0" VerticalAlignment="Top" Checked="ChangeDate"/>
+        <RadioButton x:Name="rbo115" Content="1:15 p.m. - 1:45 p.m." HorizontalAlignment="Left" Margin="227,276,0,0" VerticalAlignment="Top" Checked="ChangeDate"/>
         <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110" Click="btnNext_Click"/>
         <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
-        <DatePicker HorizontalAlignment="Left" Margin="178,110,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,145,0,0" TextWrapping="Wrap" Text="Note: Only orders made before 10:30 a.m. can be delivered today" VerticalAlignment="Top" FontSize="12" Width="620"/>
+        <TextBlock x:Name="txtNote" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,145,0,0" TextWrapping="Wrap" Text="Note: Only orders made before 10:30 a.m. can be delivered today" VerticalAlignment="Top" FontSize="12" Width="620"/>
+        <CalendarDatePicker x:Name="cdpDatePicker" HorizontalAlignment="Left" Margin="161,110,0,0" VerticalAlignment="Top" Width="304" DateChanged="cdpDatePicker_DateChanged"/>
 
     </Grid>
 </Page>
