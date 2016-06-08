@@ -25,7 +25,7 @@
         <TextBlock x:Name="txtNote" HorizontalAlignment="Left" Margin="355,276,0,0" TextWrapping="Wrap" Text="Note: Payment for the order will be processed at delivery" VerticalAlignment="Top" Width="245" FontSize="9"/>
         <Button x:Name="btnNext" Content="Start Order" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110" Click="btnNext_Click"/>
         <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
-        <RadioButton x:Name="rboRememberDetails" Content="Remember Details" HorizontalAlignment="Left" Margin="44,281,0,0" VerticalAlignment="Top" Width="164" Checked="rboRememberDetails_Checked"/>
+        <RadioButton x:Name="rboRememberDetails" Content="Remember Details" HorizontalAlignment="Left" Margin="44,281,0,0" VerticalAlignment="Top" Width="164" />
         <TextBox x:Name="tbxExpiryMonth" HorizontalAlignment="Left" Margin="463,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="14"/>
         <TextBox x:Name="tbxExpiryYear" HorizontalAlignment="Left" Margin="536,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="14"/>
         <TextBlock x:Name="txtSplitter" HorizontalAlignment="Left" Margin="530,245,0,0" TextWrapping="Wrap" Text="/" VerticalAlignment="Top" Width="4"/>

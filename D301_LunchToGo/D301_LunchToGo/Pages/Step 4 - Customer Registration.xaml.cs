@@ -26,12 +26,18 @@ namespace D301_LunchToGo
         {
             this.InitializeComponent();
             SetupPage();
-            
         }
 
+        /// <summary>
+        /// Sets up page defaults
+        /// </summary>
         private void SetupPage()
         {
             // DB QUERY HERE - REMEBER DETAILS = Y
+            /* then rbo is checked
+             * load custname,phone,addr into boxes
+             */
+
             // else load customers into textboxes
 
             // Load customers into textboxes
@@ -43,8 +49,13 @@ namespace D301_LunchToGo
             tbxCCV.Text = OrderManager.CreditCardCCV ?? "";
             tbxExpiryMonth.Text = OrderManager.CreditCardMonth ?? "";
             tbxExpiryYear.Text = OrderManager.CreditCardYear ?? "";
+            rboRememberDetails.IsChecked = false;
         }
 
+        /// <summary>
+        /// Checks fields to ensure none are empty or exceed max and min lengths
+        /// </summary>
+        /// <returns>True if all fields are correctly entered into</returns>
         private bool CheckFields()
         {
             // Check all fields to ensure their validity
@@ -60,18 +71,15 @@ namespace D301_LunchToGo
                 return false;
             if (String.IsNullOrEmpty(tbxCCV.Text) || String.IsNullOrWhiteSpace(tbxCCV.Text))
                 return false;
-            if (tbxCCV.Text.Length != 3)
-                return false;
-            if (tbxExpiryMonth.Text.Length != 2)
-                return false;
-            if (tbxExpiryYear.Text.Length != 2)
-                return false;
             if (!ValidateCreditCard())
                 return false;
 
             return true;
         }
 
+        /// <summary>
+        /// Saves fields to the Ordermanager class for later use
+        /// </summary>
         private void SaveFields()
         {
             // Save fields to order manager class
@@ -85,33 +93,76 @@ namespace D301_LunchToGo
             OrderManager.CreditCardYear = tbxExpiryYear.Text;
         }
 
+        /// <summary>
+        /// Cleans up credit card details input and confirms whether or not credit card number, ccv and expiry dates are valid
+        /// </summary>
+        /// <returns>True if credit card is valid</returns>
         private bool ValidateCreditCard()
         {
             // Remove non numbers from credit card field and check length
-            string cc = "";
-            tbxCreditCardNumber.Text.Trim();
+            string cc = CleanString(tbxCreditCardNumber.Text);
 
-            foreach (char c in tbxCreditCardNumber.Text)
-            {
-                if (char.IsNumber(c))
-                    cc += c;
-            }
-            
-            //If length falls within credit card number length
-            if (cc.Length > 12 && cc.Length < 20)
-            {
+            if (cc.Length <= 12 && cc.Length > 19)
+                return false;
+            else
                 tbxCreditCardNumber.Text = cc;
-                return true;
-            }
 
-            return false;
+            // Remove any non numbers from CCV and check length
+            cc = CleanString(tbxCCV.Text);
+            if (cc.Length != 3)
+                return false;
+            else
+                tbxCCV.Text = cc;
+
+            // Remove any non numbers from Expiry date, check length, and check to ensure credit card has not expired
+            cc = CleanString(tbxExpiryMonth.Text);
+            if (cc.Length != 2)
+                return false;
+            else
+                tbxExpiryMonth.Text = cc;
+
+            cc = CleanString(tbxExpiryYear.Text);
+            if (cc.Length != 2)
+                return false;
+            else
+                tbxExpiryYear.Text = cc;
+
+            // Expiry Check
+            if (int.Parse(tbxExpiryYear.Text) < int.Parse(DateTime.Now.ToString("yy")))
+                return false;
+            if (int.Parse(tbxExpiryMonth.Text) < int.Parse(DateTime.Now.ToString("MM")) && int.Parse(tbxExpiryYear.Text) == int.Parse(DateTime.Now.ToString("yy")))
+                return false;
+
+            return true;
         }
 
+        /// <summary>
+        /// Removes all non numbers from string
+        /// </summary>
+        /// <param name="toClean">string that is to be cleaned</param>
+        /// <returns>a string with only numbers</returns>
+        private string CleanString(string toClean)
+        {
+            toClean = toClean.Trim();
+            string cleanedString = "";
+
+            foreach (char c in toClean)
+            {
+                if (char.IsNumber(c))
+                    cleanedString += c;
+            }
+
+            return cleanedString;
+        }
+
+        /// <summary>
+        /// Places customer details into database
+        /// </summary>
         private void RememberDetails()
         {
             // Store in database
             /*
-             * rememberDetails
+             * rememberDetails -> Y or N
              * custname
              * custphone
              * custaddr
@@ -125,6 +176,7 @@ namespace D301_LunchToGo
 
         private async void btnNext_Click(object sender, RoutedEventArgs e)
         {
+           // If fields are properly entered into then save details and move to next step, else tell user
             if (CheckFields())
             {
                 OrderManager.CreditCardValid = true;
@@ -136,7 +188,7 @@ namespace D301_LunchToGo
             else
             {
                 OrderManager.CreditCardValid = false;
-                var messageDialog = new Windows.UI.Popups.MessageDialog("Please ensure all fields are filled out", "Error");
+                var messageDialog = new Windows.UI.Popups.MessageDialog("Please ensure all fields are filled out correctly", "Error");
                 messageDialog.Commands.Add(new Windows.UI.Popups.UICommand { Label = "Ok", Id = 0 });
                 await messageDialog.ShowAsync();
             }

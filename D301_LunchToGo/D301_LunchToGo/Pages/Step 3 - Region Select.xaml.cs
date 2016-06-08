@@ -28,6 +28,9 @@ namespace D301_LunchToGo
             SetupPage();
         }
 
+        /// <summary>
+        /// Setup defaults for page
+        /// </summary>
         private void SetupPage()
         {
             // If there is a delivery time then set it up else setup default
@@ -60,6 +63,7 @@ namespace D301_LunchToGo
             this.Frame.Navigate(typeof(StepFour));
         }
 
+        // Set region to radio button that was pressed
         private void radioButton_Checked(object sender, RoutedEventArgs e)
         {
             if (sender is RadioButton)

@@ -30,6 +30,9 @@ namespace D301_LunchToGo
             SetupPage();  
         }
 
+        /// <summary>
+        /// Setup page defaults
+        /// </summary>
         private void SetupPage()
         {
             // If there is an order date then set else set as default
@@ -66,6 +69,9 @@ namespace D301_LunchToGo
             }
         }
 
+        /// <summary>
+        /// Checks time restriction on 10:30 orders
+        /// </summary>
         private void CheckDate()
         {
             // If before 10:30am then can order now else min date is set to next day
@@ -92,6 +98,7 @@ namespace D301_LunchToGo
             this.Frame.Navigate(typeof(StepOne));
         }
 
+        // Set time to what the user selects
         private void ChangeDate(object sender, RoutedEventArgs e)
         {
             if (sender is RadioButton)
@@ -101,6 +108,7 @@ namespace D301_LunchToGo
             }
         }
 
+        // Set date to what the user selects
         private void cdpDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
             DateTimeOffset dt = (DateTimeOffset)cdpDatePicker.Date;
