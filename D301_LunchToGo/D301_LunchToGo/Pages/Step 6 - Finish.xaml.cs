@@ -25,7 +25,7 @@ namespace D301_LunchToGo
         public StepSix()
         {
             this.InitializeComponent();
-            System.Diagnostics.Debug.WriteLine(OrderManager.Order());
+            System.Diagnostics.Debug.WriteLine(OrderManager.OrderDetails());
         }
 
 

@@ -13,17 +13,23 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
+using SQLite.Net;
+using SQLite.Net.Attributes;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace D301_LunchToGo
 {
-    
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class StepFive : Page
     {
+        // Connection for SQL server
+        SQLiteConnection conn;
+        private string path;
+
         // Global var that holds the current meal the user has selected
         Meal currentMeal;
 
@@ -31,7 +37,11 @@ namespace D301_LunchToGo
         {
             this.InitializeComponent();
             SetupPage();
-            
+
+            // Setup database
+            path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db.sqlite");
+            conn = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
+            conn.CreateTable<OrderDB>();
         }
 
         /// <summary>
@@ -46,24 +56,73 @@ namespace D301_LunchToGo
         // Place Order on button click
         private async void btnPlaceOrder_Click(object sender, RoutedEventArgs e)
         {
-            // If there is internet connection then send order, else tell the user
-
-            // If CanOrder then proceed to end, else tell user
-            if (CanOrder())
-                this.Frame.Navigate(typeof(StepSix));
+            // If there is an internet connection and at least 1 meal in the cart then attempt to send order
+            string result = CanOrder();
+            if (result == "Success")
+            {
+                InsertOrderToDatabase();
+                if (OrderPoster.SendOrder())
+                    this.Frame.Navigate(typeof(StepSix));
+                else
+                {
+                    var messageDialog = new Windows.UI.Popups.MessageDialog("Order failed to send. Check internet connection", "Error");
+                    messageDialog.Commands.Add(new Windows.UI.Popups.UICommand { Label = "Ok", Id = 0 });
+                    await messageDialog.ShowAsync();
+                }
+            }
             else
             {
-                var messageDialog = new Windows.UI.Popups.MessageDialog("There are no items in the cart");
+                var messageDialog = new Windows.UI.Popups.MessageDialog(result, "Error");
                 messageDialog.Commands.Add(new Windows.UI.Popups.UICommand { Label = "Ok", Id = 0 });
                 await messageDialog.ShowAsync();
             }
         }
 
+        // Goes back a frame on button click
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StepFour));
         }
 
+        /// <summary>
+        /// Inserts current order into database
+        /// </summary>
+        private void InsertOrderToDatabase()
+        {
+            conn.DeleteAll<OrderDB>();
+
+            conn.CreateTable<OrderDB>();
+
+            var s = conn.Insert(new OrderDB()
+            {
+                DeliveryDate = OrderManager.DeliveryDate,
+                DeliveryTime = OrderManager.DeliveryTime,
+                Region = OrderManager.Region,
+                CustomerName = OrderManager.CustomerName,
+                CustomerPhone = OrderManager.CustomerPhone,
+                CustomerAddress = OrderManager.CustomerAddress,
+                CustomerCity = OrderManager.CustomerCity,
+                CreditCardName = OrderManager.CreditCardName,
+                CreditCardNumber = OrderManager.CreditCardNumber,
+                CreditCardCCV = OrderManager.CreditCardCCV,
+                CreditCardMonth = OrderManager.CreditCardMonth,
+                CreditCardYear = OrderManager.CreditCardYear
+            });
+
+            foreach (Meal m in OrderManager.Meals)
+            {
+                var x = conn.Insert(new MealDB()
+                {
+                    OrderID = s,
+                    Dish = m.Dish,
+                    Secondary = m.Secondary
+                });
+            }
+
+            Debug.WriteLine("S = " +s);
+        }
+
+        // Adds meal to order
         private void btnAddToOrder_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -77,6 +136,7 @@ namespace D301_LunchToGo
             }
         }
 
+        // Clears all meals in order on button click
         private void btnClearOrder_Click(object sender, RoutedEventArgs e)
         {
             OrderManager.ClearMeals();
@@ -193,18 +253,19 @@ namespace D301_LunchToGo
         /// Checks whether or not the user can place the order
         /// </summary>
         /// <returns>If user can place order</returns>
-        private bool CanOrder()
+        private string CanOrder()
         {
             // If the user has items in the cart then they can place the order else return false
-            if(OrderManager.Meals != null)
-            {
-                if (OrderManager.Meals.Count > 0)
-                    return true;
-            }
+            if (OrderManager.Meals == null)
+                return "You must have at least one meal in the cart";
+            else if (OrderManager.Meals.Count < 1)
+                return "You must have at least one meal in the cart";
 
-            return false;
+            // Whether or not the user has an internet connection
+            if (NetworkConnectionTrigger.HasInternet())
+                return "Success";
+            else
+                return "You must be connected to the internet";
         }
-
-        
     }
 }

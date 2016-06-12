@@ -12,6 +12,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SQLite.Net;
+using SQLite.Net.Attributes;
+using System.Diagnostics;
+using Windows.Storage;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,119 +26,144 @@ namespace D301_LunchToGo
     /// </summary>
     public sealed partial class StepFour : Page
     {
+
+        // Connection for SQL server
+        SQLiteConnection conn;
+        private string path;
+
         public StepFour()
         {
             this.InitializeComponent();
             SetupPage();
+
+            // Setup database
+            
+            
+            //    conn.CreateTable<CustomerDetailsDB>();
         }
 
         /// <summary>
         /// Sets up page defaults
         /// </summary>
-        private void SetupPage()
+        private async void SetupPage()
         {
-            // DB QUERY HERE - REMEBER DETAILS = Y
-            /* then rbo is checked
-             * load custname,phone,addr into boxes
-             */
+            path = Path.Combine(ApplicationData.Current.LocalFolder.Path, "db.sqlite");
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile notesFile = await storageFolder.CreateFileAsync("db.sqlite", CreationCollisionOption.OpenIfExists);            
+            conn = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
 
-            // else load customers into textboxes
+            // If the table CustomerDetailsDB is not empty then there is previous saved information
+            // To load onto page
+            try
+            {
+                if (conn.Table<CustomerDetailsDB>().Count() > 0)
+                {
+                    List<CustomerDetailsDB> cList = conn.Query<CustomerDetailsDB>("Select * from CustomerDetailsDB ORDER BY CustName ASC LIMIT 1");
 
-            // Load customers into textboxes
-            tbxCustName.Text = OrderManager.CustomerName ?? "";
-            tbxCustAddr.Text = OrderManager.CustomerAddress ?? "";
-            tbxCustPhone.Text = OrderManager.CustomerPhone ?? "";
+                    foreach (CustomerDetailsDB c in cList)
+                    {
+                        tbxCustName.Text = c.CustName ?? "";
+                        tbxCustAddr.Text = c.CustAddr ?? "";
+                        tbxCustPhone.Text = c.CustPhone ?? "";
+                        tbxCustCity.Text = c.CustCity ?? "";
+                    }
+
+                    rboRememberDetails.IsChecked = true;
+                }
+                else
+                {
+                    tbxCustName.Text = OrderManager.CustomerName ?? "";
+                    tbxCustAddr.Text = OrderManager.CustomerAddress ?? "";
+                    tbxCustPhone.Text = OrderManager.CustomerPhone ?? "";
+                    tbxCustCity.Text = OrderManager.CustomerCity ?? "";
+                    rboRememberDetails.IsChecked = false;
+                }
+            }
+            catch
+            {
+                tbxCustName.Text = OrderManager.CustomerName ?? "";
+                tbxCustAddr.Text = OrderManager.CustomerAddress ?? "";
+                tbxCustPhone.Text = OrderManager.CustomerPhone ?? "";
+                tbxCustCity.Text = OrderManager.CustomerCity ?? "";
+                rboRememberDetails.IsChecked = false;
+            }
+            
+
+            // Load in credit card details if any
             tbxCreditCardName.Text = OrderManager.CreditCardName ?? "";
             tbxCreditCardNumber.Text = OrderManager.CreditCardNumber ?? "";
             tbxCCV.Text = OrderManager.CreditCardCCV ?? "";
             tbxExpiryMonth.Text = OrderManager.CreditCardMonth ?? "";
             tbxExpiryYear.Text = OrderManager.CreditCardYear ?? "";
-            rboRememberDetails.IsChecked = false;
+
         }
 
         /// <summary>
         /// Checks fields to ensure none are empty or exceed max and min lengths
         /// </summary>
         /// <returns>True if all fields are correctly entered into</returns>
-        private bool CheckFields()
+        private string CheckFields()
         {
             // Check all fields to ensure their validity
             if (String.IsNullOrEmpty(tbxCustName.Text) || String.IsNullOrWhiteSpace(tbxCustName.Text))
-                return false;
+                return "Input Customer Name";
             if (String.IsNullOrEmpty(tbxCustAddr.Text) || String.IsNullOrWhiteSpace(tbxCustAddr.Text))
-                return false;
+                return "Input Customer Address";
             if (String.IsNullOrEmpty(tbxCustPhone.Text) || String.IsNullOrWhiteSpace(tbxCustPhone.Text))
-                return false;
+                return "Input Customer Phone";
             if (String.IsNullOrEmpty(tbxCreditCardName.Text) || String.IsNullOrWhiteSpace(tbxCreditCardName.Text))
-                return false;
+                return "Input Credit Card Name";
             if (String.IsNullOrEmpty(tbxCreditCardNumber.Text) || String.IsNullOrWhiteSpace(tbxCreditCardNumber.Text))
-                return false;
+                return "Input Credit Card Number";
+            if (String.IsNullOrEmpty(tbxCustCity.Text) || String.IsNullOrWhiteSpace(tbxCustCity.Text))
+                return "Input Customer City";
             if (String.IsNullOrEmpty(tbxCCV.Text) || String.IsNullOrWhiteSpace(tbxCCV.Text))
-                return false;
-            if (!ValidateCreditCard())
-                return false;
-
-            return true;
-        }
-
-        /// <summary>
-        /// Saves fields to the Ordermanager class for later use
-        /// </summary>
-        private void SaveFields()
-        {
-            // Save fields to order manager class
-            OrderManager.CustomerName = tbxCustName.Text;
-            OrderManager.CustomerAddress = tbxCustAddr.Text;
-            OrderManager.CustomerPhone = tbxCustPhone.Text;
-            OrderManager.CreditCardName = tbxCreditCardName.Text;
-            OrderManager.CreditCardNumber = tbxCreditCardNumber.Text;
-            OrderManager.CreditCardCCV = tbxCCV.Text;
-            OrderManager.CreditCardMonth = tbxExpiryMonth.Text;
-            OrderManager.CreditCardYear = tbxExpiryYear.Text;
+                return "Input CCV";
+            return ValidateCreditCard();
         }
 
         /// <summary>
         /// Cleans up credit card details input and confirms whether or not credit card number, ccv and expiry dates are valid
         /// </summary>
         /// <returns>True if credit card is valid</returns>
-        private bool ValidateCreditCard()
+        private string ValidateCreditCard()
         {
             // Remove non numbers from credit card field and check length
             string cc = CleanString(tbxCreditCardNumber.Text);
-
             if (cc.Length <= 12 && cc.Length > 19)
-                return false;
+                return "Credit Card Number is incorrect length";
             else
                 tbxCreditCardNumber.Text = cc;
 
             // Remove any non numbers from CCV and check length
             cc = CleanString(tbxCCV.Text);
             if (cc.Length != 3)
-                return false;
+                return "CCV is incorrect length";
             else
                 tbxCCV.Text = cc;
 
             // Remove any non numbers from Expiry date, check length, and check to ensure credit card has not expired
             cc = CleanString(tbxExpiryMonth.Text);
             if (cc.Length != 2)
-                return false;
+                return "Expiry Month is incorrect length";
             else
                 tbxExpiryMonth.Text = cc;
 
             cc = CleanString(tbxExpiryYear.Text);
             if (cc.Length != 2)
-                return false;
+                return "Expiry Year is incorrect length";
             else
                 tbxExpiryYear.Text = cc;
 
             // Expiry Check
             if (int.Parse(tbxExpiryYear.Text) < int.Parse(DateTime.Now.ToString("yy")))
-                return false;
+                return "Unable to use Credit Card - it has expired";
             if (int.Parse(tbxExpiryMonth.Text) < int.Parse(DateTime.Now.ToString("MM")) && int.Parse(tbxExpiryYear.Text) == int.Parse(DateTime.Now.ToString("yy")))
-                return false;
+                return "Unable to use Credit Card - it has expired";
 
-            return true;
+            return "Success";
         }
+
 
         /// <summary>
         /// Removes all non numbers from string
@@ -156,17 +185,49 @@ namespace D301_LunchToGo
         }
 
         /// <summary>
+        /// Saves fields to the Ordermanager class for later use
+        /// </summary>
+        private void SaveFields()
+        {
+            // Save fields to order manager class
+            OrderManager.CustomerName = tbxCustName.Text;
+            OrderManager.CustomerAddress = tbxCustAddr.Text;
+            OrderManager.CustomerPhone = tbxCustPhone.Text;
+            OrderManager.CustomerCity = tbxCustCity.Text;
+            OrderManager.CreditCardName = tbxCreditCardName.Text;
+            OrderManager.CreditCardNumber = tbxCreditCardNumber.Text;
+            OrderManager.CreditCardCCV = tbxCCV.Text;
+            OrderManager.CreditCardMonth = tbxExpiryMonth.Text;
+            OrderManager.CreditCardYear = tbxExpiryYear.Text;
+        }
+
+        /// <summary>
         /// Places customer details into database
         /// </summary>
         private void RememberDetails()
         {
-            // Store in database
-            /*
-             * rememberDetails -> Y or N
-             * custname
-             * custphone
-             * custaddr
-             */
+
+            conn.DeleteAll<CustomerDetailsDB>();
+
+            conn.CreateTable<CustomerDetailsDB>();
+            var s = conn.Insert(new CustomerDetailsDB()
+            {
+                CustName = tbxCustName.Text,
+                CustPhone = tbxCustPhone.Text,
+                CustAddr = tbxCustAddr.Text,
+                CustCity = tbxCustCity.Text
+            });
+
+            Debug.WriteLine("SQL Data entered");
+        }
+
+        /// <summary>
+        /// Deletes any record in the CustomerDetailsDB Database
+        /// </summary>
+        private void CancelDetails()
+        {
+            conn.DeleteAll<CustomerDetailsDB>();
+            Debug.WriteLine("SQL Data forgotten");
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -176,19 +237,22 @@ namespace D301_LunchToGo
 
         private async void btnNext_Click(object sender, RoutedEventArgs e)
         {
+            string validRegistration = CheckFields();
            // If fields are properly entered into then save details and move to next step, else tell user
-            if (CheckFields())
+            if (validRegistration == "Success")
             {
                 OrderManager.CreditCardValid = true;
                 SaveFields();
                 if ((bool)rboRememberDetails.IsChecked)
                     RememberDetails();
+                else
+                    CancelDetails();
                 this.Frame.Navigate(typeof(StepFive));
             }
             else
             {
                 OrderManager.CreditCardValid = false;
-                var messageDialog = new Windows.UI.Popups.MessageDialog("Please ensure all fields are filled out correctly", "Error");
+                var messageDialog = new Windows.UI.Popups.MessageDialog(validRegistration, "Error");
                 messageDialog.Commands.Add(new Windows.UI.Popups.UICommand { Label = "Ok", Id = 0 });
                 await messageDialog.ShowAsync();
             }
@@ -196,7 +260,11 @@ namespace D301_LunchToGo
 
         private void rboRememberDetails_Checked(object sender, RoutedEventArgs e)
         {
-          
+            if ((bool)rboRememberDetails.IsChecked)
+                OrderManager.RememberDetails = true;
+            else
+                OrderManager.RememberDetails = false;
         }
+
     }
 }

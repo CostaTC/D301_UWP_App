@@ -12,23 +12,25 @@
         <TextBlock x:Name="txtCCName" HorizontalAlignment="Left" Margin="355,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Credit Card Name"/>
         <TextBox x:Name="tbxCreditCardName" HorizontalAlignment="Left" Margin="355,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
         <TextBlock x:Name="txtCCNumber" HorizontalAlignment="Left" Margin="355,149,0,0" TextWrapping="Wrap" Text="Credit Card Number" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbxCreditCardNumber" HorizontalAlignment="Left" Margin="355,174,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+        <TextBox x:Name="tbxCreditCardNumber" HorizontalAlignment="Left" Margin="355,174,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245" InputScope="Default"/>
         <TextBlock x:Name="txtCCV" HorizontalAlignment="Left" Margin="355,214,0,0" TextWrapping="Wrap" Text="CCV:" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbxCCV" HorizontalAlignment="Left" Margin="355,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74"/>
+        <TextBox x:Name="tbxCCV" HorizontalAlignment="Left" Margin="355,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74" InputScope="Digits"/>
         <TextBlock x:Name="txtExpDate" HorizontalAlignment="Left" Margin="463,214,0,0" TextWrapping="Wrap" Text="Expiry Date:" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtCName" HorizontalAlignment="Left" Margin="43,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Customer Name:"/>
         <TextBox x:Name="tbxCustName" HorizontalAlignment="Left" Margin="43,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
         <TextBlock x:Name="txtCPhone" HorizontalAlignment="Left" Margin="43,149,0,0" TextWrapping="Wrap" Text="Customer Phone:" VerticalAlignment="Top"/>
         <TextBox x:Name="tbxCustPhone" HorizontalAlignment="Left" Margin="43,174,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
-        <TextBlock x:Name="txtCAddr" HorizontalAlignment="Left" Margin="43,214,0,0" TextWrapping="Wrap" Text="Customer Address" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtCAddr" HorizontalAlignment="Left" Margin="43,214,0,0" TextWrapping="Wrap" Text="Delivery Address" VerticalAlignment="Top"/>
         <TextBox x:Name="tbxCustAddr" HorizontalAlignment="Left" Margin="43,239,0,0" TextWrapping="Wrap" AcceptsReturn="True" Text="" VerticalAlignment="Top" Width="245" />
         <TextBlock x:Name="txtNote" HorizontalAlignment="Left" Margin="355,276,0,0" TextWrapping="Wrap" Text="Note: Payment for the order will be processed at delivery" VerticalAlignment="Top" Width="245" FontSize="9"/>
-        <Button x:Name="btnNext" Content="Start Order" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110" Click="btnNext_Click"/>
-        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
-        <RadioButton x:Name="rboRememberDetails" Content="Remember Details" HorizontalAlignment="Left" Margin="44,281,0,0" VerticalAlignment="Top" Width="164" />
-        <TextBox x:Name="tbxExpiryMonth" HorizontalAlignment="Left" Margin="463,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="14"/>
-        <TextBox x:Name="tbxExpiryYear" HorizontalAlignment="Left" Margin="536,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="14"/>
+        <Button x:Name="btnNext" Content="Start Order" HorizontalAlignment="Left" Margin="355,384,0,0" VerticalAlignment="Top" Width="110" Click="btnNext_Click"/>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,384,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
+        <RadioButton x:Name="rboRememberDetails" Content="Remember Details" HorizontalAlignment="Left" Margin="43,346,0,0" VerticalAlignment="Top" Width="164" Checked="rboRememberDetails_Checked" />
+        <TextBox x:Name="tbxExpiryMonth" HorizontalAlignment="Left" Margin="463,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="14" InputScope="Digits"/>
+        <TextBox x:Name="tbxExpiryYear" HorizontalAlignment="Left" Margin="536,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="14" InputScope="Digits"/>
         <TextBlock x:Name="txtSplitter" HorizontalAlignment="Left" Margin="530,245,0,0" TextWrapping="Wrap" Text="/" VerticalAlignment="Top" Width="4"/>
+        <TextBlock x:Name="txtCCity" HorizontalAlignment="Left" Margin="43,279,0,0" TextWrapping="Wrap" Text="Delivery City" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbxCustCity" HorizontalAlignment="Left" Margin="43,304,0,0" TextWrapping="Wrap" AcceptsReturn="True" Text="" VerticalAlignment="Top" Width="245" />
 
     </Grid>
 </Page>

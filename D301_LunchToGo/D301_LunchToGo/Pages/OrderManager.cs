@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SQLite.Net;
+using SQLite.Net.Attributes;
 
 namespace D301_LunchToGo
 {
@@ -11,6 +13,10 @@ namespace D301_LunchToGo
     /// </summary>
     public static class OrderManager
     {
+        // Setup database
+        //string path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db.sqlite");
+        //SQLiteConnection conn =  SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
+
         // Properties that hold the data for the Delivery Section - Step two
         public static DateTime DeliveryDate { get; set; }
         public static string DeliveryTime { get; set; }
@@ -22,12 +28,14 @@ namespace D301_LunchToGo
         public static string CustomerName { get; set; }
         public static string CustomerPhone { get; set; }
         public static string CustomerAddress { get; set; }
+        public static string CustomerCity { get; set; }
         public static string CreditCardName { get; set; }
         public static string CreditCardNumber { get; set; }
         public static string CreditCardCCV { get; set; }
         public static string CreditCardMonth { get; set; }
         public static string CreditCardYear { get; set; }
         public static bool CreditCardValid { get; set; }
+        public static bool RememberDetails { get; set; }
 
         // Property that holds the meals that the user has ordered Step 5
         public static List<Meal> Meals { get; set; }
@@ -65,7 +73,7 @@ namespace D301_LunchToGo
         /// Puts order details into a formatted string
         /// </summary>
         /// <returns>Formatted string of the order details</returns>
-        public static string Order()
+        public static string OrderDetails()
         {
             string meals = "";
             if(Meals != null)
@@ -75,7 +83,7 @@ namespace D301_LunchToGo
                     meals += "\n" + m.ToString();
                 }
             }
-            return $"Delivery Date: {DeliveryDate.Date}\nDelivery Time: {DeliveryTime}\nRegion: {Region}\nCustomer Name: {CustomerName}\nCustomer Phone: {CustomerPhone}\nCustomer Addr: {CustomerAddress}\nCredit Card Valid: {CreditCardValid}\nMeals: {meals}";
+            return $"Delivery Date: {DeliveryDate.Date}\nDelivery Time: {DeliveryTime}\nRegion: {Region}\nCustomer Name: {CustomerName}\nCustomer Phone: {CustomerPhone}\nCustomer Addr: {CustomerAddress}\nCustomer City: {CustomerCity}\nCredit Card Valid: {CreditCardValid}\nMeals: {meals}";
         }
     }
 

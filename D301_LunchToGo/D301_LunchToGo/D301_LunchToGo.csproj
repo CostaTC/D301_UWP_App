@@ -95,7 +95,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OrderManager.cs" />
+    <Compile Include="Pages\NetworkConnectionTrigger.cs" />
+    <Compile Include="Pages\OrderDB.cs" />
+    <Compile Include="Pages\OrderManager.cs" />
+    <Compile Include="Pages\CustomerDetailsDB.cs" />
+    <Compile Include="Pages\OrderPoster.cs" />
     <Compile Include="Pages\Step 2 - Delivery Time.xaml.cs">
       <DependentUpon>Step 2 - Delivery Time.xaml</DependentUpon>
     </Compile>
@@ -170,6 +174,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
+      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs.120, Version=14.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Universal</Name>
+    </SDKReference>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.13.0">
+      <Name>SQLite for Universal Windows Platform</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
