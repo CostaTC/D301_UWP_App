@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product App</title>
+</head>
+<body>
+
+    <div>
+        <h2>Orders</h2>
+        <ul id="products" />
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+    var uri = 'api/products';
+
+    $(document).ready(function () {
+      // Send an AJAX request
+      $.getJSON(uri)
+          .done(function (data) {
+
+              $('<table style="width:100%">').appendTo($('#products'));
+            // On success, 'data' contains a list of products.
+              $.each(data, function (key, item) {
+
+                  // Create html for each order
+                  var html = '<tr><td colspan="3">';
+                  html += '<h3 style="background-color:#ff0000;" >CUSTOMER</h3>';
+                  html += '<ul style="list-style: none;">';
+                  html += '<li>Customer: ' + item.CustomerName + '</li>';
+                  html += '<li>Phone: ' + item.CustomerPhone + '</li>';
+                  html += '<li>Address: ' + item.CustomerAddress + '</li>';
+                  html += '<li>City: ' + item.CustomerCity + '</li>';
+                  html += '<li>Region: ' + item.Region + '</li>';
+                  html += '<li>Delivery Time: ' + item.DeliveryTime + '</li>';
+                  html += '<li>Delivery Date: ' + item.DeliveryDate + '</li>';
+                  html += '</ul>';
+                  html += '</td>';
+                  html += '<td style="width:50px" />';
+                  html += '<td >';
+
+                  // Loop through meals
+                  html += '<h3>Order</h3>';
+                  $.each(item.Meals, function (index,value){
+                      html += '<li>' + value.Dish + ' with ' + value.Secondary + '</li>';
+                 });
+                  html += '</td></tr>';
+                  html += '<tr><td></td></tr>';
+                $(html).appendTo($('#products'));
+              });
+
+            $('</table>').appendTo($('#products'));
+          });
+    });
+
+    //public List<Meal> Meals { get; set; }
+
+    </script>
+</body>
+</html>

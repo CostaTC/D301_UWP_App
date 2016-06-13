@@ -45,7 +45,8 @@ namespace D301_LunchToGo
 
     public class MealDB
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
+        public int MealID { get; set; }
         public int OrderID { get; set; }
         public string Dish { get; set; }
         public string Secondary { get; set; }

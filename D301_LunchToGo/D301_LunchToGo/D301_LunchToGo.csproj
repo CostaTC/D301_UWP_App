@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Pages\NetworkConnectionTrigger.cs" />
     <Compile Include="Pages\OrderDB.cs" />
+    <Compile Include="Pages\OrderJSON.cs" />
     <Compile Include="Pages\OrderManager.cs" />
     <Compile Include="Pages\CustomerDetailsDB.cs" />
     <Compile Include="Pages\OrderPoster.cs" />
