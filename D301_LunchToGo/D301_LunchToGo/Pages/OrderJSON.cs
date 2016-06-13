@@ -9,45 +9,45 @@ namespace D301_LunchToGo
 {
     public class OrderJSON
     {
-        [JsonProperty("id")]
+        [JsonProperty("ID")]
         public int ID { get; set; }
-        [JsonProperty("deliveryDate")]
+        [JsonProperty("DeliveryDate")]
         public string DeliveryDate { get; set; }
-        [JsonProperty("deliveryTime")]
+        [JsonProperty("DeliveryTime")]
         public string DeliveryTime { get; set; }
-        [JsonProperty("region")]
+        [JsonProperty("Region")]
         public string Region { get; set; }
-        [JsonProperty("name")]
+        [JsonProperty("CustomerName")]
         public string CustomerName { get; set; }
-        [JsonProperty("phone")]
+        [JsonProperty("CustomerPhone")]
         public string CustomerPhone { get; set; }
-        [JsonProperty("address")]
+        [JsonProperty("CustomerAddress")]
         public string CustomerAddress { get; set; }
-        [JsonProperty("city")]
+        [JsonProperty("CustomerCity")]
         public string CustomerCity { get; set; }
-        [JsonProperty("creditCardName")]
+        [JsonProperty("CreditCardName")]
         public string CreditCardName { get; set; }
-        [JsonProperty("creditCardNumber")]
+        [JsonProperty("CreditCardNumber")]
         public string CreditCardNumber { get; set; }
-        [JsonProperty("creditCardCCV")]
+        [JsonProperty("CreditCardCCV")]
         public string CreditCardCCV { get; set; }
-        [JsonProperty("creditCardMonth")]
+        [JsonProperty("CreditCardMonth")]
         public string CreditCardMonth { get; set; }
-        [JsonProperty("creditCardYear")]
+        [JsonProperty("CreditCardYear")]
         public string CreditCardYear { get; set; }
-        [JsonProperty("meals")]
+        [JsonProperty("Meals")]
         public List<MealJSON> Meals { get; set; }
     }
 
     public class MealJSON
     {
-        [JsonProperty("id")]
+        [JsonProperty("ID")]
         public int MealID { get; set; }
-        [JsonProperty("orderID")]
+        [JsonProperty("OrderID")]
         public int OrderID { get; set; }
-        [JsonProperty("dish")]
+        [JsonProperty("Dish")]
         public string Dish { get; set; }
-        [JsonProperty("secondary")]
+        [JsonProperty("Secondary")]
         public string Secondary { get; set; }
     }
 }

@@ -23,6 +23,20 @@ namespace LunchToGoServer.Models
         public string CreditCardMonth { get; set; }
         public string CreditCardYear { get; set; }
         public List<Meal> Meals { get; set; }
+
+        public override string ToString()
+        {
+            string meals = "";
+            if (Meals != null)
+            {
+                foreach (Meal m in Meals)
+                {
+                    meals += "\n" + m.ToString();
+                }
+            }
+            return $"Delivery Date: {DeliveryDate}\nDelivery Time: {DeliveryTime}\nRegion: {Region}\nCustomer Name: {CustomerName}\nCustomer Phone: {CustomerPhone}\nCustomer Addr: {CustomerAddress}\nCustomer City: {CustomerCity}\nMeals: {meals}";
+
+        }
     }
 
     public class Meal

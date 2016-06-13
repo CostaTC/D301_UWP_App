@@ -10,6 +10,7 @@ using System.Net.Http;
 using Windows.Web;
 using SQLite.Net;
 using SQLite.Net.Attributes;
+using System.Diagnostics;
 
 namespace D301_LunchToGo
 {
@@ -66,7 +67,7 @@ namespace D301_LunchToGo
 
             using (var httpClient = new System.Net.Http.HttpClient())
             {
-
+                Debug.WriteLine(httpContent.ToString());
                 // Do the actual request and await the response
                 var httpResponse = await httpClient.PostAsync("http://localhost:29102/api/products", httpContent);
 
@@ -74,17 +75,17 @@ namespace D301_LunchToGo
                 if (httpResponse.Content != null)
                 {
                     var responseContent = await httpResponse.Content.ReadAsStringAsync();
-
-                    System.Diagnostics.Debug.WriteLine(responseContent);
-                    System.Diagnostics.Debug.WriteLine(responseContent.ToString());
-                    if (responseContent.ToString() == "Success")
+                    Debug.WriteLine(responseContent);
+                    if (responseContent.ToString() != "\"null\"")
                         return true;
                     else
                         return false;
                 }
-            }
+                else
+                    return false;
 
-            return false;
+            }
+            
         }
     }
  }
