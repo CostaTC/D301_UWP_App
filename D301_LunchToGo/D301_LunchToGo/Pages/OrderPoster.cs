@@ -23,7 +23,7 @@ namespace D301_LunchToGo
             // Get order from db
             List<OrderDB> cList = conn.Query<OrderDB>("Select * from OrderDB ORDER BY ID ASC LIMIT 1");
             OrderDB o = cList.First();
-            List<MealDB> mdb = conn.Query<MealDB>("Select * from MealDB where OrderID=?",o.ID);
+            List<MealDB> mdb = conn.Query<MealDB>("Select * from MealDB");
 
             // Convert meals to json
             List<MealJSON> mJson = new List<MealJSON>();
@@ -68,7 +68,7 @@ namespace D301_LunchToGo
             {
 
                 // Do the actual request and await the response
-                var httpResponse = await httpClient.PostAsync("http://localhost/api/path", httpContent);
+                var httpResponse = await httpClient.PostAsync("http://localhost:29102/api/products", httpContent);
 
                 // If the response contains content we want to read it!
                 if (httpResponse.Content != null)
@@ -76,7 +76,11 @@ namespace D301_LunchToGo
                     var responseContent = await httpResponse.Content.ReadAsStringAsync();
 
                     System.Diagnostics.Debug.WriteLine(responseContent);
-                    // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
+                    System.Diagnostics.Debug.WriteLine(responseContent.ToString());
+                    if (responseContent.ToString() == "Success")
+                        return true;
+                    else
+                        return false;
                 }
             }
 

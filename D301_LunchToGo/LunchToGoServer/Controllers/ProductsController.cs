@@ -11,7 +11,10 @@ namespace LunchToGoServer.Controllers
     public class ProductsController : ApiController
     {
 
-        Product[] products = new Product[]
+        public IEnumerable<Product> GetAllProducts()
+        {
+            // CHANGE TO DATABASE STUFF IN HERE
+            return new Product[]
         {
             new Product {
                 ID = 1, CustomerName = "Tom",
@@ -75,21 +78,17 @@ namespace LunchToGoServer.Controllers
             },
 
         };
-
-        public IEnumerable<Product> GetAllProducts()
-        {
-            // CHANGE TO DATABASE STUFF IN HERE
-            return products;
         }
 
-        public IHttpActionResult GetProduct(int id)
+        public HttpResponseMessage Post([FromBody]string value)
         {
-            var product = products.FirstOrDefault((p) => p.ID == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return Ok(product);
+            return Request.CreateResponse(HttpStatusCode.OK, "Success");
         }
+
+        //public Product SingleProduct(int id)
+        //{
+        //    return products.FirstOrDefault((p) => p.ID == id);
+        //}
+
     }
 }

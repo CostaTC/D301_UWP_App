@@ -42,6 +42,7 @@ namespace D301_LunchToGo
             path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db.sqlite");
             conn = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
             conn.CreateTable<OrderDB>();
+            conn.CreateTable<MealDB>();
         }
 
         /// <summary>
@@ -61,7 +62,10 @@ namespace D301_LunchToGo
             if (result == "Success")
             {
                 InsertOrderToDatabase();
-                if (OrderPoster.SendOrder())
+
+                bool b = await OrderPoster.SendOrder();
+
+                if (b)
                     this.Frame.Navigate(typeof(StepSix));
                 else
                 {
@@ -90,8 +94,9 @@ namespace D301_LunchToGo
         private void InsertOrderToDatabase()
         {
             conn.DeleteAll<OrderDB>();
-
+            conn.DeleteAll<MealDB>();
             conn.CreateTable<OrderDB>();
+            conn.CreateTable<MealDB>();
 
             var s = conn.Insert(new OrderDB()
             {
