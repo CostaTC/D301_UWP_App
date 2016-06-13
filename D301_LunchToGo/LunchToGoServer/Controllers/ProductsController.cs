@@ -16,7 +16,7 @@ namespace LunchToGoServer.Controllers
     public class ProductsController : ApiController
     {
        
-        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" + "Initial Catalog=Orders.mdf;" + "Integrated Security=False;";
+        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" + "Initial Catalog=Orders.mdf;" + "Integrated Security=True;" + "User ID=admin;pwd=admin";
 
         public IEnumerable<Product> GetAllProducts()
         {
