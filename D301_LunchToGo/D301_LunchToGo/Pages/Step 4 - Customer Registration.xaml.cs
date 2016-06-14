@@ -207,7 +207,12 @@ namespace D301_LunchToGo
         private void RememberDetails()
         {
             conn.CreateTable<CustomerDetailsDB>();
-            conn.DeleteAll<CustomerDetailsDB>();
+            try
+            {
+                conn.DeleteAll<CustomerDetailsDB>();
+            }
+            catch(Exception) { }
+            
 
             conn.CreateTable<CustomerDetailsDB>();
             var s = conn.Insert(new CustomerDetailsDB()
