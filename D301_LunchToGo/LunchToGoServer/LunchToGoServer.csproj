@@ -121,10 +121,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\L2GORDERDB.mdf" />
-    <Content Include="App_Data\L2GORDERDB_log.ldf">
-      <DependentUpon>L2GORDERDB.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\Orders.mdf" />
     <Content Include="App_Data\Orders_log.ldf">
       <DependentUpon>Orders.mdf</DependentUpon>
