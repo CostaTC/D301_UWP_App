@@ -15,8 +15,9 @@ namespace LunchToGoServer.Controllers
 {
     public class ProductsController : ApiController
     {
-       
-        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" + "Initial Catalog=Orders.mdf;" + "Integrated Security=True;" + "User ID=admin;pwd=admin";
+        // + "User ID=admin;pwd=admin"
+        //private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" + "Initial Catalog=L2GORDERDB.mdf;" + "Integrated Security=True;" + "User ID='';pwd=''";
+        private string connectionString = "Data Source=sql.uict.nz;Initial Catalog=0849511;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=True;";
 
         public IEnumerable<Product> GetAllProducts()
         {
@@ -24,9 +25,10 @@ namespace LunchToGoServer.Controllers
             // Return product[]
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                Debug.WriteLine(conn.Database);
                 conn.Open();
 
-                SqlCommand s = new SqlCommand("SELECT * FROM [dbo].[Order]", conn);
+                SqlCommand s = new SqlCommand("SELECT * FROM [dbo].[ORDER]", conn);
                 SqlDataReader reader = s.ExecuteReader();
 
                 if (reader.HasRows)
@@ -54,31 +56,35 @@ namespace LunchToGoServer.Controllers
                             Meals = new List<Meal>()
                         };
 
+                        products.Add(product);
+
                     }
-                }      
+                }
+                reader.Close(); 
+                
 
                 foreach(Product product in products)
                 {
                     // Setup meals for the product
-                    s = new SqlCommand("SELECT * FROM Meal WHERE OrderID=@ID", conn);
+                    s = new SqlCommand("SELECT * FROM MEAL WHERE ORDERID=@ID", conn);
                     s.Parameters.Add(new SqlParameter("ID", product.ID));
 
-                    SqlDataReader r = s.ExecuteReader();
-                    if (r.HasRows)
+                    reader = s.ExecuteReader();
+                    if (reader.HasRows)
                     {
-                        while (r.Read())
+                        while (reader.Read())
                         {
                             product.Meals.Add(new Meal()
                             {
-                                Dish = r.GetString(1),
-                                Secondary = r.GetString(2)
+                                Dish = reader.GetString(1),
+                                Secondary = reader.GetString(2)
                             });
                         }
                     }
                    
                 }
 
-
+                reader.Close();
                     conn.Close();
             }
 
@@ -95,7 +101,7 @@ namespace LunchToGoServer.Controllers
                 {
                     conn.Open();
                     
-                    SqlCommand s = new SqlCommand("INSERT INTO [dbo].[Order] (CustomerName,CustomerPhone,CustomerAddress,CustomerCity,Region,DeliveryDate,DeliveryTime,CreditCardName,CreditCardNumber,CreditCardCCV,CreditCardMonth,CreditCardYear) VALUES (@name,@phone,@address,@city,@region,@deliveryDate,@deliveryTime,@creditCardName,@creditCardNumber,@creditCardCCV,@creditCardMonth,@creditCardYear)", conn);
+                    SqlCommand s = new SqlCommand("INSERT INTO [dbo].[ORDER] (CUSTOMERNAME,CUSTOMERPHONE,CUSTOMERADDRESS,CUSTOMERCITY,REGION,DELIVERYDATE,DELIVERYTIME,CREDITCARDNAME,CREDITCARDNUMBER,CREDITCARDCCV,CREDITCARDMONTH,CREDITCARDYEAR) VALUES (@name,@phone,@address,@city,@region,@deliveryDate,@deliveryTime,@creditCardName,@creditCardNumber,@creditCardCCV,@creditCardMonth,@creditCardYear)", conn);
                     s.Parameters.Add(new SqlParameter("name", p.CustomerName));
                     s.Parameters.Add(new SqlParameter("phone", p.CustomerPhone));
                     s.Parameters.Add(new SqlParameter("address", p.CustomerAddress));
@@ -112,7 +118,7 @@ namespace LunchToGoServer.Controllers
 
                     foreach (Meal m in p.Meals)
                     {
-                        SqlCommand sc = new SqlCommand("INSERT INTO Meal (Dish, Secondary, OrderID) VALUES (@dish,@secondary,@id)", conn);
+                        SqlCommand sc = new SqlCommand("INSERT INTO MEAL (DISH, SECONDARY, ORDERID) VALUES (@dish,@secondary,@id)", conn);
                         sc.Parameters.Add(new SqlParameter("dish", m.Dish));
                         sc.Parameters.Add(new SqlParameter("secondary", m.Secondary));
                         sc.Parameters.Add(new SqlParameter("id", x));
