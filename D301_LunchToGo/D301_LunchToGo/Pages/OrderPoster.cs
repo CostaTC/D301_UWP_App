@@ -67,6 +67,8 @@ namespace D301_LunchToGo
 
             using (var httpClient = new System.Net.Http.HttpClient())
             {
+                Debug.WriteLine(payload);
+                Debug.WriteLine(stringPayload);
                 Debug.WriteLine(httpContent.ToString());
                 // Do the actual request and await the response
                 var httpResponse = await httpClient.PostAsync("http://localhost:29102/api/products", httpContent);
@@ -75,6 +77,7 @@ namespace D301_LunchToGo
                 if (httpResponse.Content != null)
                 {
                     var responseContent = await httpResponse.Content.ReadAsStringAsync();
+                    Debug.WriteLine("RESPONSE STRING----------:");
                     Debug.WriteLine(responseContent);
                     if (responseContent.ToString() != "\"null\"")
                         return true;

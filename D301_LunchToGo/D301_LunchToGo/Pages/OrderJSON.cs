@@ -41,7 +41,7 @@ namespace D301_LunchToGo
 
     public class MealJSON
     {
-        [JsonProperty("ID")]
+        [JsonProperty("MealID")]
         public int MealID { get; set; }
         [JsonProperty("OrderID")]
         public int OrderID { get; set; }

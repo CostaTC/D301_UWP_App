@@ -131,27 +131,27 @@ namespace D301_LunchToGo
             // Remove non numbers from credit card field and check length
             string cc = CleanString(tbxCreditCardNumber.Text);
             if (cc.Length <= 12 && cc.Length > 19)
-                return "Credit Card Number is incorrect length";
+                return "Credit Card Number is incorrect";
             else
                 tbxCreditCardNumber.Text = cc;
 
             // Remove any non numbers from CCV and check length
             cc = CleanString(tbxCCV.Text);
             if (cc.Length != 3)
-                return "CCV is incorrect length";
+                return "CCV is incorrect";
             else
                 tbxCCV.Text = cc;
 
             // Remove any non numbers from Expiry date, check length, and check to ensure credit card has not expired
             cc = CleanString(tbxExpiryMonth.Text);
             if (cc.Length != 2)
-                return "Expiry Month is incorrect length";
+                return "Expiry Month is incorrect";
             else
                 tbxExpiryMonth.Text = cc;
 
             cc = CleanString(tbxExpiryYear.Text);
             if (cc.Length != 2)
-                return "Expiry Year is incorrect length";
+                return "Expiry Year is incorrect";
             else
                 tbxExpiryYear.Text = cc;
 
@@ -231,7 +231,15 @@ namespace D301_LunchToGo
         /// </summary>
         private void CancelDetails()
         {
-            conn.DeleteAll<CustomerDetailsDB>();
+            try
+            {
+                conn.DeleteAll<CustomerDetailsDB>();
+            }
+            catch
+            {
+
+            }
+            
             Debug.WriteLine("SQL Data forgotten");
         }
 

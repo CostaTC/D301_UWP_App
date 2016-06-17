@@ -41,6 +41,8 @@ namespace LunchToGoServer.Models
 
     public class Meal
     {
+        public int MealID { get; set; }
+        public int OrderID { get; set; }
         public string Dish { get; set; }
         public string Secondary { get; set; }
     }

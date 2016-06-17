@@ -66,7 +66,7 @@ namespace LunchToGoServer.Controllers
                 foreach(Product product in products)
                 {
                     // Setup meals for the product
-                    s = new SqlCommand("SELECT * FROM MEAL WHERE ORDERID=@ID", conn);
+                    s = new SqlCommand("SELECT * FROM [dbo].[MEAL] WHERE ORDERID=@ID", conn);
                     s.Parameters.Add(new SqlParameter("ID", product.ID));
 
                     reader = s.ExecuteReader();
@@ -100,29 +100,59 @@ namespace LunchToGoServer.Controllers
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    
-                    SqlCommand s = new SqlCommand("INSERT INTO [dbo].[ORDER] (CUSTOMERNAME,CUSTOMERPHONE,CUSTOMERADDRESS,CUSTOMERCITY,REGION,DELIVERYDATE,DELIVERYTIME,CREDITCARDNAME,CREDITCARDNUMBER,CREDITCARDCCV,CREDITCARDMONTH,CREDITCARDYEAR) VALUES (@name,@phone,@address,@city,@region,@deliveryDate,@deliveryTime,@creditCardName,@creditCardNumber,@creditCardCCV,@creditCardMonth,@creditCardYear)", conn);
-                    s.Parameters.Add(new SqlParameter("name", p.CustomerName));
-                    s.Parameters.Add(new SqlParameter("phone", p.CustomerPhone));
-                    s.Parameters.Add(new SqlParameter("address", p.CustomerAddress));
-                    s.Parameters.Add(new SqlParameter("city", p.CustomerCity));
-                    s.Parameters.Add(new SqlParameter("region", p.Region));
-                    s.Parameters.Add(new SqlParameter("deliveryDate", p.DeliveryDate));
-                    s.Parameters.Add(new SqlParameter("deliveryTime", p.DeliveryTime));
-                    s.Parameters.Add(new SqlParameter("creditCardName", p.CreditCardName));
-                    s.Parameters.Add(new SqlParameter("creditCardNumber", p.CreditCardNumber));
-                    s.Parameters.Add(new SqlParameter("creditCardCCV", p.CreditCardCCV));
-                    s.Parameters.Add(new SqlParameter("creditCardMonth", p.CreditCardMonth));
-                    s.Parameters.Add(new SqlParameter("creditCardYear", p.CreditCardYear));
-                    int x = (Int32)s.ExecuteScalar();
 
-                    foreach (Meal m in p.Meals)
+                    //SqlCommand ewq = new SqlCommand("INSERT INTO [dbo].[MEAL] (DISH, SECONDARY, ORDERID) VALUES (@dish,@secondary,@id)", conn);
+                    //ewq.Parameters.Add(new SqlParameter("dish", p.Meals.Count.ToString()));
+                    //ewq.Parameters.Add(new SqlParameter("secondary", p.Meals.First().Secondary));
+                    //ewq.Parameters.Add(new SqlParameter("id", 3));
+                    //ewq.ExecuteScalar();
+                    int x = 0;
+
+                    try
                     {
-                        SqlCommand sc = new SqlCommand("INSERT INTO MEAL (DISH, SECONDARY, ORDERID) VALUES (@dish,@secondary,@id)", conn);
-                        sc.Parameters.Add(new SqlParameter("dish", m.Dish));
-                        sc.Parameters.Add(new SqlParameter("secondary", m.Secondary));
-                        sc.Parameters.Add(new SqlParameter("id", x));
-                        sc.ExecuteScalar();
+                        SqlCommand s = new SqlCommand("INSERT INTO [dbo].[ORDER] (CUSTOMERNAME,CUSTOMERPHONE,CUSTOMERADDRESS,CUSTOMERCITY,REGION,DELIVERYDATE,DELIVERYTIME,CREDITCARDNAME,CREDITCARDNUMBER,CREDITCARDCCV,CREDITCARDMONTH,CREDITCARDYEAR) VALUES (@name,@phone,@address,@city,@region,@deliveryDate,@deliveryTime,@creditCardName,@creditCardNumber,@creditCardCCV,@creditCardMonth,@creditCardYear)", conn);
+                        s.Parameters.Add(new SqlParameter("name", p.CustomerName));
+                        s.Parameters.Add(new SqlParameter("phone", p.CustomerPhone));
+                        s.Parameters.Add(new SqlParameter("address", p.CustomerAddress));
+                        s.Parameters.Add(new SqlParameter("city", p.CustomerCity));
+                        s.Parameters.Add(new SqlParameter("region", p.Region));
+                        s.Parameters.Add(new SqlParameter("deliveryDate", p.DeliveryDate));
+                        s.Parameters.Add(new SqlParameter("deliveryTime", p.DeliveryTime));
+                        s.Parameters.Add(new SqlParameter("creditCardName", p.CreditCardName));
+                        s.Parameters.Add(new SqlParameter("creditCardNumber", p.CreditCardNumber));
+                        s.Parameters.Add(new SqlParameter("creditCardCCV", p.CreditCardCCV));
+                        s.Parameters.Add(new SqlParameter("creditCardMonth", p.CreditCardMonth));
+                        s.Parameters.Add(new SqlParameter("creditCardYear", p.CreditCardYear));
+                        s.ExecuteScalar();
+
+                        SqlCommand sq = new SqlCommand("SELECT TOP 1 ID FROM [dbo].[ORDER] ORDER BY ID DESC", conn);
+                        SqlDataReader reader = sq.ExecuteReader();
+
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                x = reader.GetInt32(0);
+                            }
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+
+                    for (int i = 0; i < p.Meals.Count; i++)
+                    {
+                        try
+                        {
+                            SqlCommand sc = new SqlCommand("INSERT INTO [dbo].[MEAL] (DISH, SECONDARY, ORDERID) VALUES (@dish,@secondary,@id)", conn);
+                            sc.Parameters.Add(new SqlParameter("dish", p.Meals[i].Dish));
+                            sc.Parameters.Add(new SqlParameter("secondary", p.Meals[i].Secondary));
+                            sc.Parameters.Add(new SqlParameter("id", x));
+                            sc.ExecuteScalar();
+                        }
+                        catch { }
+                        
                     }
 
                     conn.Close();
@@ -134,6 +164,5 @@ namespace LunchToGoServer.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, "null");
 
         }
-
     }
 }

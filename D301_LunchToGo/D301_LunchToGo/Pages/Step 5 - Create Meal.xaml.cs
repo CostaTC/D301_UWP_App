@@ -61,14 +61,21 @@ namespace D301_LunchToGo
             string result = CanOrder();
             if (result == "Success")
             {
+                btnPlaceOrder.IsEnabled = false;
+                btnPlaceOrder.Content = "Processing";
                 InsertOrderToDatabase();
 
                 bool b = await OrderPoster.SendOrder();
 
                 if (b)
+                {
                     this.Frame.Navigate(typeof(StepSix));
+                    btnPlaceOrder.IsEnabled = true;
+                }
+                   
                 else
                 {
+                    btnPlaceOrder.Content = "Place Order";
                     var messageDialog = new Windows.UI.Popups.MessageDialog("Order failed to send. Check internet connection", "Error");
                     messageDialog.Commands.Add(new Windows.UI.Popups.UICommand { Label = "Ok", Id = 0 });
                     await messageDialog.ShowAsync();
