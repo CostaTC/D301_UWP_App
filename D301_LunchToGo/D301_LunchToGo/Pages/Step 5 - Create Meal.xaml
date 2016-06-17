@@ -9,8 +9,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="txtCreateMeal" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Create Meal" VerticalAlignment="Top" FontSize="48" Width="620" />
-        <Button x:Name="btnPlaceOrder" Content="Place Order" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110" Click="btnPlaceOrder_Click"/>
-        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
+        <Button x:Name="btnPlaceOrder" Content="Place Order" HorizontalAlignment="Left" Margin="405,384,0,0" VerticalAlignment="Top" Width="110" Click="btnPlaceOrder_Click"/>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="228,384,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
         <TextBlock x:Name="txtStepOne" HorizontalAlignment="Left" Margin="44,79,0,0" TextWrapping="Wrap" Text="1. Select a Meal:" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtStepTwo" HorizontalAlignment="Left" Margin="286,79,0,0" TextWrapping="Wrap" Text="2. Modify Meal:" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtCart" HorizontalAlignment="Left" Margin="487,79,0,0" TextWrapping="Wrap" Text="Cart" VerticalAlignment="Top"/>

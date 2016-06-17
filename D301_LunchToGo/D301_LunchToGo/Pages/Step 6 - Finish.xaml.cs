@@ -26,6 +26,7 @@ namespace D301_LunchToGo
         {
             this.InitializeComponent();
             System.Diagnostics.Debug.WriteLine(OrderManager.OrderDetails());
+            txtDeliveryTime.Text += " " + OrderManager.DeliveryTime;
         }
 
 

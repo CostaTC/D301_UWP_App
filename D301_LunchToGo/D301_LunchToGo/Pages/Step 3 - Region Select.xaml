@@ -8,12 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="txtEnterDeliveryDetails" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Select Region" VerticalAlignment="Top" FontSize="48" Width="620" />
-        <RadioButton x:Name="rboWhanganui" Content="Whanganui" HorizontalAlignment="Left" Margin="263,102,0,0" VerticalAlignment="Top" Checked="radioButton_Checked"/>
-        <RadioButton x:Name="rboWairarapa" Content="Wairarapa" HorizontalAlignment="Left" Margin="263,153,0,0" VerticalAlignment="Top" Checked="radioButton_Checked"/>
-        <RadioButton x:Name="rboManawatu" Content="Manawatu" HorizontalAlignment="Left" Margin="263,204,0,0" VerticalAlignment="Top" Checked="radioButton_Checked"/>
-        <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="355,318,0,0" VerticalAlignment="Top" Width="110" Click="btnNext_Click"/>
-        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="178,318,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
+        <TextBlock x:Name="txtEnterDeliveryDetails" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Select Region" VerticalAlignment="Top" FontSize="48" Width="748" />
+        <RadioButton x:Name="rboWhanganui" Content="Whanganui" HorizontalAlignment="Left" Margin="319,118,0,0" VerticalAlignment="Top" Checked="radioButton_Checked" FontSize="18.667"/>
+        <RadioButton x:Name="rboWairarapa" Content="Wairarapa" HorizontalAlignment="Left" Margin="319,182,0,0" VerticalAlignment="Top" Checked="radioButton_Checked" FontSize="18.667"/>
+        <RadioButton x:Name="rboManawatu" Content="Manawatu" HorizontalAlignment="Left" Margin="319,244,0,0" VerticalAlignment="Top" Checked="radioButton_Checked" FontSize="18.667"/>
+        <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="408,384,0,0" VerticalAlignment="Top" Width="110" Click="btnNext_Click"/>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="228,384,0,0" VerticalAlignment="Top" Width="110" Click="btnBack_Click"/>
 
     </Grid>
 </Page>
