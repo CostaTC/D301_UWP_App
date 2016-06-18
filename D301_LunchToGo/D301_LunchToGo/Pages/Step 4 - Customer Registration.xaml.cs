@@ -59,7 +59,7 @@ namespace D301_LunchToGo
                 if (conn.Table<CustomerDetailsDB>().Count() > 0)
                 {
                     List<CustomerDetailsDB> cList = conn.Query<CustomerDetailsDB>("Select * from CustomerDetailsDB ORDER BY CustName ASC LIMIT 1");
-
+                    
                     foreach (CustomerDetailsDB c in cList)
                     {
                         tbxCustName.Text = c.CustName ?? "";

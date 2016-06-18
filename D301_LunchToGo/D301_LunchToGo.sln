@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D301_LunchToGo", "D301_LunchToGo\D301_LunchToGo.csproj", "{58268690-882E-4757-A89A-2B7FF6A4A6E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunchToGoServer", "LunchToGoServer\LunchToGoServer.csproj", "{3B291280-BF5E-4AFD-AB99-EFD0D7A73175}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTester", "UnitTester\UnitTester.csproj", "{A8CA4000-6361-4110-8D06-074E44B873A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,26 @@ Global
 		{3B291280-BF5E-4AFD-AB99-EFD0D7A73175}.Release|x64.Build.0 = Release|Any CPU
 		{3B291280-BF5E-4AFD-AB99-EFD0D7A73175}.Release|x86.ActiveCfg = Release|Any CPU
 		{3B291280-BF5E-4AFD-AB99-EFD0D7A73175}.Release|x86.Build.0 = Release|Any CPU
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|ARM.Build.0 = Debug|ARM
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|ARM.Deploy.0 = Debug|ARM
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|x64.ActiveCfg = Debug|x64
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|x64.Build.0 = Debug|x64
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|x64.Deploy.0 = Debug|x64
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|x86.ActiveCfg = Debug|x86
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|x86.Build.0 = Debug|x86
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Debug|x86.Deploy.0 = Debug|x86
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|Any CPU.ActiveCfg = Release|x86
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|ARM.ActiveCfg = Release|ARM
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|ARM.Build.0 = Release|ARM
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|ARM.Deploy.0 = Release|ARM
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|x64.ActiveCfg = Release|x64
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|x64.Build.0 = Release|x64
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|x64.Deploy.0 = Release|x64
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|x86.ActiveCfg = Release|x86
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|x86.Build.0 = Release|x86
+		{A8CA4000-6361-4110-8D06-074E44B873A2}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
