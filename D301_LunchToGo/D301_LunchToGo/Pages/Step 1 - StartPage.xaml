@@ -5,12 +5,29 @@
     xmlns:local="using:D301_LunchToGo"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Width="574.154" Height="408.597">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="grdBackground" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,0,47">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
 
-        <Button x:Name="btnStartOrder" Content="Begin" HorizontalAlignment="Left" Margin="265,286,0,0" VerticalAlignment="Top" BorderBrush="#FF33FFBE" Background="#FF33FFBE" Foreground="White" Height="42" Width="142" FontSize="22" Click="btnStartOrder_Click"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="271" Margin="152,10,0,0" VerticalAlignment="Top" Width="355" Source="ms-appx:///Assets/MyAssets/LunchToGo.png"/>
+        <GridView x:Name="grvTop" Margin="10,10,10,0" VerticalAlignment="Top" Height="288" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2">
+            <Image x:Name="image" Height="211"  Source="ms-appx:///Assets/MyAssets/LunchToGo.png"  Width="598" HorizontalAlignment="Center" />
+        </GridView>
+
+        <GridView Grid.Column="0" Grid.Row="1"/>
+        <GridView x:Name="grvBottom" HorizontalAlignment="Left" Margin="9.667,15,0,10.667" Grid.Row="1" Width="172" Grid.Column="1">
+            <Button x:Name="btnStartOrder" Content="Begin" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#FF33FFBE" Background="#FF33FFBE" Foreground="White" FontSize="22" Click="btnStartOrder_Click" Height="41" Width="172" />
+        </GridView>
+
+
 
     </Grid>
 </Page>
