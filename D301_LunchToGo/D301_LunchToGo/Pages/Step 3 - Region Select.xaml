@@ -13,7 +13,7 @@
             <RadioButton x:Name="rboWhanganui" Content="Whanganui" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Center" Checked="radioButton_Checked" FontSize="18.667"/>
             <RadioButton x:Name="rboWairarapa" Content="Wairarapa" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Center" Checked="radioButton_Checked" FontSize="18.667"/>
             <RadioButton x:Name="rboManawatu" Content="Manawatu" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Center" Checked="radioButton_Checked" FontSize="18.667"/>
-            <Grid x:Name="gridView" Margin="123,0,136,0">
+            <Grid x:Name="gridView" Margin="123,0,136,0" VerticalAlignment="Bottom">
                 <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Stretch" Click="btnNext_Click" Width="110" Height="37"/>
                 <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="btnBack_Click" Width="110"/>
             </Grid>
