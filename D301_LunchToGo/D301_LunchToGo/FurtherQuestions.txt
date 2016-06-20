@@ -1,8 +1,0 @@
-﻿
-Do we need to have resizable layout?
-
-What exactly has to be in the unit tests?
-
-Xaml pages names need a format e.g. xpgPage
-
-How many comments?

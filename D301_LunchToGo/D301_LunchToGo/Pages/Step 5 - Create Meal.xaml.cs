@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using SQLite.Net;
 using SQLite.Net.Attributes;
 using System.Diagnostics;
+using D301_LunchToGo.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,6 +34,7 @@ namespace D301_LunchToGo
         // Global var that holds the current meal the user has selected
         Meal currentMeal;
 
+        // Setup page and db's
         public StepFive()
         {
             this.InitializeComponent();
@@ -57,7 +59,7 @@ namespace D301_LunchToGo
         // Place Order on button click
         private async void btnPlaceOrder_Click(object sender, RoutedEventArgs e)
         {
-            // If there is an internet connection and at least 1 meal in the cart then attempt to send order
+            // If there is an internet connection and at least 1 meal in the cart then attempt to send order else inform user to do so
             string result = CanOrder();
             if (result == "Success")
             {
@@ -155,6 +157,30 @@ namespace D301_LunchToGo
             lbxOrders.Items.Clear();
         }
 
+        //"imgGreenSalad" Height="47" Source="ms-appx:///Assets/MyAssets/imgGreenSalad.png" Tapped="selectMeal"/>
+        //    <Image x:Name="imgLambKorma" Height="47" Source="ms-appx:///Assets/MyAssets/imgLambKorma.png" Tapped="selectMeal"/>
+        //    <Image x:Name="imgChickenSandwich" Height="47" Source="ms-appx:///Assets/MyAssets/imgChickenSandwich.png" Tapped="selectMeal"/>
+        //    <Image x:Name="imgBeefNoodle"
+        // Gets price for meal
+        private float GetPrice (string mealName)
+        {
+            switch (mealName)
+            {
+                case "imgGreenSalad":
+                    return 5f;
+                case "imgLambKorma":
+                    return 7.50f;
+                case "imgChickenSandwich":
+                    return 3.50f;
+                case "imgBeefNoodle":
+                    return 2.50f;
+
+                default:
+                    return 0;
+                   
+            }
+        }
+
         // When the user selects a meal in step 1
         private void selectMeal(object sender, TappedRoutedEventArgs e)
         {
@@ -166,7 +192,7 @@ namespace D301_LunchToGo
                 
                 ChangeSelectedMeal(meal);
                 ChangeOptions(meal.Name);
-                currentMeal = new Meal(meal.Name, rboOptionOne.Content.ToString());
+                currentMeal = new Meal(meal.Name, rboOptionOne.Content.ToString(), GetPrice(meal.Name));
             }
         }
 

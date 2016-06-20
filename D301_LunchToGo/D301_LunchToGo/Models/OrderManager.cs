@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 using SQLite.Net;
 using SQLite.Net.Attributes;
 
-namespace D301_LunchToGo
+namespace D301_LunchToGo.Models
 {
     /// <summary>
     /// Static class that holds information the user inputs during the order process
     /// </summary>
     public static class OrderManager
     {
-        // Setup database
-        //string path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db.sqlite");
-        //SQLiteConnection conn =  SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
-
         // Properties that hold the data for the Delivery Section - Step two
         public static DateTime DeliveryDate { get; set; }
         public static string DeliveryTime { get; set; }
@@ -47,7 +43,7 @@ namespace D301_LunchToGo
         public static void AddMeal(Meal meal)
         {
             // Convert meal name
-            Meal currentMeal = new Meal(meal.Dish, meal.Secondary);
+            Meal currentMeal = new Meal(meal.Dish, meal.Secondary, meal.Price);
             currentMeal.ConvertName();
 
             // Null check the list - initialize if it's empty
@@ -95,16 +91,18 @@ namespace D301_LunchToGo
         // Properties that reference the dish and the secondary choice that goes with it
         public string Dish { get; set; }
         public string Secondary { get; set; }
+        public float Price { get; set; }
 
         /// <summary>
         /// Class Constructor
         /// </summary>
         /// <param name="dish">Main Dish</param>
         /// <param name="secondary">Secondary option for the dish</param>
-        public Meal(string dish, string secondary)
+        public Meal(string dish, string secondary, float price)
         {
             Dish = dish;
             Secondary = secondary;
+            Price = price;
         }
 
         /// <summary>

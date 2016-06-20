@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using D301_LunchToGo.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,6 +23,7 @@ namespace D301_LunchToGo
     /// </summary>
     public sealed partial class StepSix : Page
     {
+        // Setup page with delivery time information
         public StepSix()
         {
             this.InitializeComponent();
@@ -29,7 +31,7 @@ namespace D301_LunchToGo
             txtDeliveryTime.Text += " " + OrderManager.DeliveryTime;
         }
 
-
+        // Close application on buttonclick
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();

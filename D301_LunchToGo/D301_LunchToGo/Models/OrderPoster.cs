@@ -12,12 +12,15 @@ using SQLite.Net;
 using SQLite.Net.Attributes;
 using System.Diagnostics;
 
-namespace D301_LunchToGo
+namespace D301_LunchToGo.Models
 {
+    // Static class that posts order to webserver
     public static class OrderPoster
     {
+        // Posts OrderJSON to webserver
         public async static Task<bool> SendOrder()
         {
+            // Setup db for retrieval
             string path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db.sqlite");
             SQLiteConnection conn = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
 
@@ -36,7 +39,8 @@ namespace D301_LunchToGo
                     MealID = m.MealID,
                     OrderID = m.OrderID,
                     Dish = m.Dish,
-                    Secondary = m.Secondary
+                    Secondary = m.Secondary,
+                    Price = m.Price
                 });
             }
             

@@ -42,9 +42,15 @@
                   // Loop through meals
                   html += '<h3>Order</h3>';
                   $.each(item.Meals, function (index,value){
-                      html += '<li>' + value.Dish + ' with ' + value.Secondary + '</li>';
-                 });
+                      html += '<li>' + value.Price + ' - ' + value.Dish + ' with ' + value.Secondary + '</li>';
+                  });
+
+                  var total = 0;
+                  $.each(item.Meals, function (index, value) {
+                      total += value.Price
+                  });
                   html += '</td></tr>';
+                  html += '<tr><p>Total: ' + total + '</p></tr>';
                   html += '<tr><td></td></tr>';
                 $(html).appendTo($('#products'));
               });

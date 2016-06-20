@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace D301_LunchToGo
+namespace D301_LunchToGo.Models
 {
+    // Class to convert order details into JSON
     public class OrderJSON
     {
         [JsonProperty("ID")]
@@ -39,6 +40,7 @@ namespace D301_LunchToGo
         public List<MealJSON> Meals { get; set; }
     }
 
+    // Class to convert meal details into JSON
     public class MealJSON
     {
         [JsonProperty("MealID")]
@@ -49,5 +51,7 @@ namespace D301_LunchToGo
         public string Dish { get; set; }
         [JsonProperty("Secondary")]
         public string Secondary { get; set; }
+        [JsonProperty("Price")]
+        public float Price { get; set; }
     }
 }

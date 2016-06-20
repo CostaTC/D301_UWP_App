@@ -16,6 +16,7 @@ using SQLite.Net;
 using SQLite.Net.Attributes;
 using System.Diagnostics;
 using Windows.Storage;
+using D301_LunchToGo.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -46,6 +47,7 @@ namespace D301_LunchToGo
         /// </summary>
         private async void SetupPage()
         {
+            // Sets up database connection
             path = Path.Combine(ApplicationData.Current.LocalFolder.Path, "db.sqlite");
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
             StorageFile notesFile = await storageFolder.CreateFileAsync("db.sqlite", CreationCollisionOption.OpenIfExists);            
@@ -242,11 +244,13 @@ namespace D301_LunchToGo
             Debug.WriteLine("SQL Data forgotten");
         }
 
+        // Goes back a page on button click
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StepThree));
         }
 
+        // Goes forward a page on button click and checks all fields are valid
         private async void btnNext_Click(object sender, RoutedEventArgs e)
         {
             string validRegistration = CheckFields();
@@ -270,6 +274,7 @@ namespace D301_LunchToGo
             }
         }
 
+        // Remembers customer details if user inputs to
         private void rboRememberDetails_Checked(object sender, RoutedEventArgs e)
         {
             if ((bool)rboRememberDetails.IsChecked)

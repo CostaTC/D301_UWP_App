@@ -6,27 +6,11 @@ using System.Threading.Tasks;
 using SQLite.Net;
 using SQLite.Net.Attributes;
 
-namespace D301_LunchToGo
+namespace D301_LunchToGo.Models
 {
+    // Class for storing order details in to db
     public class OrderDB
     {
-        //public OrderDB()
-        //{
-        //    DeliveryDate = OrderManager.DeliveryDate;
-        //    DeliveryTime = OrderManager.DeliveryTime;
-        //    Region = OrderManager.Region;
-        //    CustomerName = OrderManager.CustomerName;
-        //    CustomerPhone = OrderManager.CustomerPhone;
-        //    CustomerAddress = OrderManager.CustomerAddress;
-        //    CustomerCity = OrderManager.CustomerCity;
-        //    CreditCardName = OrderManager.CreditCardName;
-        //    CreditCardNumber = OrderManager.CreditCardNumber;
-        //    CreditCardCCV = OrderManager.CreditCardCCV;
-        //    CreditCardMonth = OrderManager.CreditCardMonth;
-        //    CreditCardYear = OrderManager.CreditCardYear;
-        //    Meals = OrderManager.Meals;
-        //}
-
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public DateTime DeliveryDate { get; set; }
@@ -43,6 +27,7 @@ namespace D301_LunchToGo
         public string CreditCardYear { get; set; }
     }
 
+    // Class for storing meal details in to db
     public class MealDB
     {
         [PrimaryKey, AutoIncrement]
@@ -50,6 +35,7 @@ namespace D301_LunchToGo
         public int OrderID { get; set; }
         public string Dish { get; set; }
         public string Secondary { get; set; }
+        public float Price { get; set; }
     }
 
     }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace LunchToGoServer.Models
 {
+    // Class that holds product details
     public class Product
     {
         public int ID { get; set; }
@@ -39,11 +40,13 @@ namespace LunchToGoServer.Models
         }
     }
 
+    // Class that holds meal details
     public class Meal
     {
         public int MealID { get; set; }
         public int OrderID { get; set; }
         public string Dish { get; set; }
         public string Secondary { get; set; }
+        public float Price { get; set; }
     }
 }

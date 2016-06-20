@@ -13,12 +13,13 @@ using System.Diagnostics;
 
 namespace LunchToGoServer.Controllers
 {
+    // Class that handles api calls
     public class ProductsController : ApiController
     {
-        // + "User ID=admin;pwd=admin"
-        //private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" + "Initial Catalog=L2GORDERDB.mdf;" + "Integrated Security=True;" + "User ID='';pwd=''";
+        // DB connection string
         private string connectionString = "Data Source=sql.uict.nz;Initial Catalog=0849511;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=True;";
 
+        // Fetches info from database on GET call
         public IEnumerable<Product> GetAllProducts()
         {
             List<Product> products = new List<Product>();
@@ -77,7 +78,8 @@ namespace LunchToGoServer.Controllers
                             product.Meals.Add(new Meal()
                             {
                                 Dish = reader.GetString(1),
-                                Secondary = reader.GetString(2)
+                                Secondary = reader.GetString(2),
+                                Price = (float)reader.GetDouble(4)
                             });
                         }
                     }
@@ -91,6 +93,7 @@ namespace LunchToGoServer.Controllers
             return products;
         }
 
+        // Handles data sent through in POST call
         [HttpPost]
         public HttpResponseMessage Post(Product p)
         {
@@ -101,11 +104,6 @@ namespace LunchToGoServer.Controllers
                 {
                     conn.Open();
 
-                    //SqlCommand ewq = new SqlCommand("INSERT INTO [dbo].[MEAL] (DISH, SECONDARY, ORDERID) VALUES (@dish,@secondary,@id)", conn);
-                    //ewq.Parameters.Add(new SqlParameter("dish", p.Meals.Count.ToString()));
-                    //ewq.Parameters.Add(new SqlParameter("secondary", p.Meals.First().Secondary));
-                    //ewq.Parameters.Add(new SqlParameter("id", 3));
-                    //ewq.ExecuteScalar();
                     int x = 0;
 
                     try
@@ -145,10 +143,11 @@ namespace LunchToGoServer.Controllers
                     {
                         try
                         {
-                            SqlCommand sc = new SqlCommand("INSERT INTO [dbo].[MEAL] (DISH, SECONDARY, ORDERID) VALUES (@dish,@secondary,@id)", conn);
+                            SqlCommand sc = new SqlCommand("INSERT INTO [dbo].[MEAL] (DISH, SECONDARY, ORDERID, PRICE) VALUES (@dish,@secondary,@id,@price)", conn);
                             sc.Parameters.Add(new SqlParameter("dish", p.Meals[i].Dish));
                             sc.Parameters.Add(new SqlParameter("secondary", p.Meals[i].Secondary));
                             sc.Parameters.Add(new SqlParameter("id", x));
+                            sc.Parameters.Add(new SqlParameter("price", p.Meals[i].Price));
                             sc.ExecuteScalar();
                         }
                         catch { }

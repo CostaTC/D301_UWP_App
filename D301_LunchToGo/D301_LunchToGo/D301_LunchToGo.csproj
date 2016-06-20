@@ -11,7 +11,7 @@
     <AssemblyName>D301_LunchToGo</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -95,12 +95,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\NetworkConnectionTrigger.cs" />
-    <Compile Include="Pages\OrderDB.cs" />
-    <Compile Include="Pages\OrderJSON.cs" />
-    <Compile Include="Pages\OrderManager.cs" />
-    <Compile Include="Pages\CustomerDetailsDB.cs" />
-    <Compile Include="Pages\OrderPoster.cs" />
+    <Compile Include="Models\NetworkConnectionTrigger.cs" />
+    <Compile Include="Models\OrderDB.cs" />
+    <Compile Include="Models\OrderJSON.cs" />
+    <Compile Include="Models\OrderManager.cs" />
+    <Compile Include="Models\CustomerDetailsDB.cs" />
+    <Compile Include="Models\OrderPoster.cs" />
     <Compile Include="Pages\Step 2 - Delivery Time.xaml.cs">
       <DependentUpon>Step 2 - Delivery Time.xaml</DependentUpon>
     </Compile>
@@ -137,7 +137,6 @@
     <Content Include="Assets\MyAssets\LunchToGo.png" />
     <Content Include="Assets\MyAssets\imgChickenSandwich.png" />
     <Content Include="Assets\MyAssets\imgChickenSandwichSelected.png" />
-    <Content Include="FurtherQuestions.txt" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -184,10 +183,11 @@
     <SDKReference Include="Microsoft.VCLibs.120, Version=14.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Universal</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.13.0">
-      <Name>SQLite for Universal Windows Platform %28SQLite.UWP.2015, Version=3.13.0%29</Name>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.12.0">
+      <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
