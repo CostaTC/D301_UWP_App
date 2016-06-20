@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SQLite.Net;
+using SQLite.Net.Attributes;
 
-
-namespace LunchToGoServer.Models
+namespace D301_LunchToGo.Models
 {
-    // Class that holds product details
-    public class Product
+    // Class for storing order details in to db
+    public class OrderDB
     {
+        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        public string DeliveryDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
         public string DeliveryTime { get; set; }
         public string Region { get; set; }
         public string CustomerName { get; set; }
@@ -23,30 +25,17 @@ namespace LunchToGoServer.Models
         public string CreditCardCCV { get; set; }
         public string CreditCardMonth { get; set; }
         public string CreditCardYear { get; set; }
-        public List<Meal> Meals { get; set; }
-
-        public override string ToString()
-        {
-            string meals = "";
-            if (Meals != null)
-            {
-                foreach (Meal m in Meals)
-                {
-                    meals += "\n" + m.ToString();
-                }
-            }
-            return $"Delivery Date: {DeliveryDate}\nDelivery Time: {DeliveryTime}\nRegion: {Region}\nCustomer Name: {CustomerName}\nCustomer Phone: {CustomerPhone}\nCustomer Addr: {CustomerAddress}\nCustomer City: {CustomerCity}\nMeals: {meals}";
-
-        }
     }
 
-    // Class that holds meal details
-    public class Meal
+    // Class for storing meal details in to db
+    public class MealDB
     {
+        [PrimaryKey, AutoIncrement]
         public int MealID { get; set; }
         public int OrderID { get; set; }
         public string Dish { get; set; }
         public string Secondary { get; set; }
         public float Price { get; set; }
     }
-}
+
+    }

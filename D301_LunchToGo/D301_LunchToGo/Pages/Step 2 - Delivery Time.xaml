@@ -7,28 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="grdPage" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,-86,-102">
+    <Grid x:Name="grdPage" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <StackPanel>
-
-            <TextBlock x:Name="txtDeliveryTime" TextAlignment="Center" TextWrapping="Wrap" Text="Delivery Time:" Height="57" Width="594" FontSize="48" />
-            <TextBlock x:Name="txtNote" TextAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Note: Only orders made before 10:30 a.m. can be delivered today" VerticalAlignment="Top" FontSize="12" Width="605" Height="26"/>
-
-
-            <TextBlock x:Name="txtChooseTime" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Choose a time for your order to be delivered:" VerticalAlignment="Top" Width="594" FontSize="20" Height="41"/>
-            <CalendarDatePicker x:Name="cdpDatePicker" HorizontalAlignment="Center" VerticalAlignment="Center" Width="455" DateChanged="cdpDatePicker_DateChanged" Height="37" RenderTransformOrigin="0.497,0.467"/>
-
-
-
-            <RadioButton x:Name="rbo1145" Content="11:45 a.m. - 12:15 p.m." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Checked="ChangeDate" Height="37" Width="584"/>
-            <RadioButton x:Name="rbo1215" Content="12:15 p.m. - 12:45 p.m." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Checked="ChangeDate" Height="37" Width="584"/>
-            <RadioButton x:Name="rbo1245" Content="12:45 p.m. - 1:15 p.m." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Checked="ChangeDate" Height="37" Width="584"/>
-            <RadioButton x:Name="rbo115" Content="1:15 p.m. - 1:45 p.m." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Checked="ChangeDate" Height="37" Width="584"/>
+        <StackPanel Margin="10,10,5,5">
+            <TextBlock x:Name="txtDeliveryTime" TextAlignment="Center" Margin="0,0,2,0" TextWrapping="Wrap" Text="Delivery Time:" Height="43" FontSize="32" Foreground="#FF0074FF" />
+            <CalendarDatePicker x:Name="cdpDatePicker" HorizontalAlignment="Stretch" Margin="161,2,160,0" VerticalAlignment="Stretch" DateChanged="cdpDatePicker_DateChanged"/>
+            <TextBlock x:Name="txtNote" TextAlignment="Center" Margin="10,2,-5,0" TextWrapping="Wrap" Text="Note: Only orders made before 10:30 a.m. can be delivered today" FontSize="12"/>
+            <TextBlock x:Name="txtChooseTime" Margin="0,2,0,0" TextWrapping="Wrap" Text="Choose a time for your order to be delivered:" TextAlignment="Center" FontSize="20"/>
+            <RadioButton x:Name="rbo1145" Content="11:45 a.m. - 12:15 p.m."  HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Stretch" Checked="ChangeDate"/>
+            <RadioButton x:Name="rbo1215" Content="12:15 p.m. - 12:45 p.m." HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Stretch" Checked="ChangeDate"/>
+            <RadioButton x:Name="rbo1245" Content="12:45 p.m. - 1:15 p.m." HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Stretch" Checked="ChangeDate"/>
+            <RadioButton x:Name="rbo115" Content="1:15 p.m. - 1:45 p.m." HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Stretch" Checked="ChangeDate"/>
+            <Grid x:Name="gridView" Margin="123,0,136,0">
+                <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Stretch" Click="btnNext_Click" Width="110" Height="37"/>
+                <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="btnBack_Click" Width="110"/>
+            </Grid>
 
 
-
-            <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"  Click="btnBack_Click"/>
-            <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Stretch"  Click="btnNext_Click"/>
         </StackPanel>
+
+
     </Grid>
 </Page>

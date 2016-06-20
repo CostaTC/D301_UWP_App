@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using D301_LunchToGo.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,7 +23,7 @@ namespace D301_LunchToGo
     /// </summary>
     public sealed partial class StepTwo : Page
     {
-
+        // Construct page
         public StepTwo()
         {
             this.InitializeComponent();
@@ -88,11 +89,13 @@ namespace D301_LunchToGo
 
         }
 
+        // Go to next page on button click
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StepThree));
         }
 
+        // Go back a page on button click
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StepOne));

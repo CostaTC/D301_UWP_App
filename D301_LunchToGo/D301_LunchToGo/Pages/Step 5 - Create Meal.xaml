@@ -7,26 +7,57 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="txtCreateMeal" TextAlignment="Center" Margin="10,10,10,0" TextWrapping="Wrap" Text="Create Meal" VerticalAlignment="Top" FontSize="48" />
-        <Button x:Name="btnPlaceOrder" Content="Place Order" HorizontalAlignment="Right" Margin="0,384,253,16" VerticalAlignment="Stretch" Width="110" Click="btnPlaceOrder_Click"/>
-        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Right" Margin="0,384,430,16" VerticalAlignment="Stretch" Width="110" Click="btnBack_Click"/>
-        <TextBlock x:Name="txtStepOne" HorizontalAlignment="Left" Margin="44,79,0,0" TextWrapping="Wrap" Text="1. Select a Meal:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="txtStepTwo" HorizontalAlignment="Left" Margin="345,84,0,0" TextWrapping="Wrap" Text="2. Modify Meal:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="txtCart" HorizontalAlignment="Left" Margin="582,79,0,0" TextWrapping="Wrap" Text="Cart" VerticalAlignment="Top"/>
-        <ListBox x:Name="lbxOrders" HorizontalAlignment="Left" Height="149" Margin="582,106,0,0" VerticalAlignment="Top" Width="143"/>
-        <Button x:Name="btnClearOrder" Content="Clear Order" HorizontalAlignment="Left" Margin="582,255,0,0" VerticalAlignment="Top" Width="143" Height="36" Click="btnClearOrder_Click"/>
-        <StackPanel x:Name="splMeals" HorizontalAlignment="Left" Height="185" Margin="10,104,0,0" VerticalAlignment="Top" Width="188" Background="#FF9621B0">
-            <Image x:Name="imgGreenSalad" Height="47" Source="ms-appx:///Assets/MyAssets/imgGreenSalad.png" Tapped="selectMeal"/>
-            <Image x:Name="imgLambKorma" Height="47" Source="ms-appx:///Assets/MyAssets/imgLambKorma.png" Tapped="selectMeal"/>
-            <Image x:Name="imgChickenSandwich" Height="47" Source="ms-appx:///Assets/MyAssets/imgChickenSandwich.png" Tapped="selectMeal"/>
-            <Image x:Name="imgBeefNoodle" Height="47" Source="ms-appx:///Assets/MyAssets/imgBeefNoodle.png" Tapped="selectMeal"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,-116,-77">
+        <StackPanel Margin="10,10,5,5">
+            <TextBlock x:Name="txtCreateMeal" TextAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Create Meal" FontSize="32" Height="43" Foreground="#FFEA0000" />
+            
+            <StackPanel Height="240" VerticalAlignment="Center">
+                <!-- Step 1-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="txtStepOne" Margin="0" TextWrapping="Wrap" Text="1. Select a Meal:" TextAlignment="Center"/>
+                    <StackPanel x:Name="splMeals" HorizontalAlignment="Center" Height="185" Margin="0,20,0,0" VerticalAlignment="Top" Width="188" Background="#FF9621B0">
+                        <Image x:Name="imgGreenSalad" Height="47" Source="ms-appx:///Assets/MyAssets/imgGreenSalad.png" Tapped="selectMeal"/>
+                        <Image x:Name="imgLambKorma" Height="47" Source="ms-appx:///Assets/MyAssets/imgLambKorma.png" Tapped="selectMeal"/>
+                        <Image x:Name="imgChickenSandwich" Height="47" Source="ms-appx:///Assets/MyAssets/imgChickenSandwich.png" Tapped="selectMeal"/>
+                        <Image x:Name="imgBeefNoodle" Height="47" Source="ms-appx:///Assets/MyAssets/imgBeefNoodle.png" Tapped="selectMeal"/>
+                    </StackPanel>
+                </Grid>
+                
+                <!-- Step two-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="txtStepTwo" Margin="0" TextWrapping="Wrap" Text="2. Modify Meal:" Grid.Column="1" TextAlignment="Center"/>
+                    <TextBlock x:Name="txtChoose" TextAlignment="Center" Margin="0,20,0,0" TextWrapping="Wrap" Text="Choose Dressing:" VerticalAlignment="Top" Grid.Column="1"/>
+                    <RadioButton x:Name="rboOptionOne" Content="option one" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Checked="changeSecondary" Grid.Column="1"/>
+                    <RadioButton x:Name="rboOptionTwo" Content="option two" HorizontalAlignment="Center" Margin="0,70,0,0" VerticalAlignment="Top" Checked="changeSecondary" Grid.Column="1"/>
+                    <RadioButton x:Name="rboOptionThree" Content="option three" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Checked="changeSecondary" Grid.Column="1"/>
+                    <TextBlock x:Name="txtMealPrice" TextAlignment="Center" Margin="1,130,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Grid.Column="1"/>
+                    <Button x:Name="btnAddToOrder" Content="Add to Order" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Bottom" Width="174" Click="btnAddToOrder_Click" Grid.Column="1"/>
+                </Grid>
+
+                <Grid Margin="10,5,10,0">
+
+                    <TextBlock x:Name="txtCart" Margin="0" TextWrapping="Wrap" Text="Cart Total: $0.00" VerticalAlignment="Top" Grid.Column="2" HorizontalAlignment="Center"/>
+                    <ListBox x:Name="lbxOrders" Margin="0.333,43,0,41" VerticalAlignment="Center" Grid.Column="2" Height="121"/>
+                    <Button x:Name="btnClearOrder" Content="Clear Order" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Bottom" Height="36" Click="btnClearOrder_Click" Grid.Column="2"/>
+                </Grid>
+                
+            </StackPanel>
+            <Grid x:Name="gridView" Margin="123,10,136,0" VerticalAlignment="Bottom">
+                <Button x:Name="btnPlaceOrder" Content="Place Order" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Stretch" Click="btnPlaceOrder_Click" Width="110" Height="37"/>
+                <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="btnBack_Click" Width="110"/>
+            </Grid>
         </StackPanel>
-        <Button x:Name="btnAddToOrder" Content="Add to Order" HorizontalAlignment="Left" Margin="309,255,0,0" VerticalAlignment="Top" Width="174" Click="btnAddToOrder_Click"/>
-        <TextBlock x:Name="txtChoose" HorizontalAlignment="Left" Margin="309,109,0,0" TextWrapping="Wrap" Text="Choose Dressing:" VerticalAlignment="Top" Width="174"/>
-        <RadioButton x:Name="rboOptionOne" Content="option one" HorizontalAlignment="Left" Margin="347,134,0,0" VerticalAlignment="Top" Checked="changeSecondary"/>
-        <RadioButton x:Name="rboOptionTwo" Content="option two" HorizontalAlignment="Left" Margin="347,169,0,0" VerticalAlignment="Top" Checked="changeSecondary"/>
-        <RadioButton x:Name="rboOptionThree" Content="option three" HorizontalAlignment="Left" Margin="347,204,0,0" VerticalAlignment="Top" Checked="changeSecondary"/>
+
+
+
+
+
 
     </Grid>
 </Page>
