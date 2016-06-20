@@ -129,7 +129,8 @@ namespace D301_LunchToGo
                 {
                     OrderID = s,
                     Dish = m.Dish,
-                    Secondary = m.Secondary
+                    Secondary = m.Secondary,
+                    Price = m.Price
                 });
             }
 
@@ -143,6 +144,12 @@ namespace D301_LunchToGo
             {
                 OrderManager.AddMeal(currentMeal);
                 lbxOrders.Items.Add(currentMeal);
+                float total = 0;
+                foreach(Meal m in OrderManager.Meals)
+                {
+                    total += m.Price;
+                }
+                txtCart.Text = "Cart Total: $" + total;
             }
             catch (Exception ex)
             {
@@ -155,6 +162,7 @@ namespace D301_LunchToGo
         {
             OrderManager.ClearMeals();
             lbxOrders.Items.Clear();
+            txtCart.Text = "Cart Total: $0.00";
         }
 
         //"imgGreenSalad" Height="47" Source="ms-appx:///Assets/MyAssets/imgGreenSalad.png" Tapped="selectMeal"/>
@@ -193,6 +201,7 @@ namespace D301_LunchToGo
                 ChangeSelectedMeal(meal);
                 ChangeOptions(meal.Name);
                 currentMeal = new Meal(meal.Name, rboOptionOne.Content.ToString(), GetPrice(meal.Name));
+                txtMealPrice.Text = "Price: $" + GetPrice(meal.Name);
             }
         }
 

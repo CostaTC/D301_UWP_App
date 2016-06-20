@@ -33,7 +33,6 @@
                   html += '<li>City: ' + item.CustomerCity + '</li>';
                   html += '<li>Region: ' + item.Region + '</li>';
                   html += '<li>Delivery Time: ' + item.DeliveryTime + '</li>';
-                  html += '<li>Delivery Date: ' + item.DeliveryDate + '</li>';
                   html += '</ul>';
                   html += '</td>';
                   html += '<td style="width:50px" />';
@@ -42,15 +41,15 @@
                   // Loop through meals
                   html += '<h3>Order</h3>';
                   $.each(item.Meals, function (index,value){
-                      html += '<li>' + value.Price + ' - ' + value.Dish + ' with ' + value.Secondary + '</li>';
+                      html += '<li>$' + value.Price + ' - ' + value.Dish + ' with ' + value.Secondary + '</li>';
                   });
-
+                  html += '</td></tr>';
+  
                   var total = 0;
                   $.each(item.Meals, function (index, value) {
                       total += value.Price
                   });
-                  html += '</td></tr>';
-                  html += '<tr><p>Total: ' + total + '</p></tr>';
+                  html += '<tr><td><p>ORDER TOTAL: $' + total + '</p></td></tr>';
                   html += '<tr><td></td></tr>';
                 $(html).appendTo($('#products'));
               });

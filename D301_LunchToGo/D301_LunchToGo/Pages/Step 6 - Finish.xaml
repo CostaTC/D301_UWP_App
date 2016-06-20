@@ -8,7 +8,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="txtCreateMeal" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" Text="Order Placed!" VerticalAlignment="Top" FontSize="48" Width="748" />
+        <StackPanel Margin="10,10,5,5">
+
+        </StackPanel>
+        <TextBlock x:Name="txtCreateMeal" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" Text="Order Placed!" VerticalAlignment="Top" FontSize="32" Height="43" Width="630" Foreground="#FF0EE204" />
         <TextBlock x:Name="txtDeliveryTime" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="748" Text="Order has been placed and will be delivered between" />
 
         <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="314,256,0,0" VerticalAlignment="Top" Width="155" Click="btnClose_Click"/>

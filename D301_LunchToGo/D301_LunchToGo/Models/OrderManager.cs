@@ -141,7 +141,7 @@ namespace D301_LunchToGo.Models
             if (Dish.Contains("img"))
                 ConvertName();
 
-            return Dish + " (" + Secondary + ")";
+            return "$" + Price + " - " + Dish + " (" + Secondary + ")";
         }
 
     }
