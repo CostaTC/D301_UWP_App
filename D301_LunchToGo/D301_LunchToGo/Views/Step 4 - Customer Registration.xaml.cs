@@ -126,8 +126,12 @@ namespace D301_LunchToGo
                 return "Input Customer City";
             if (String.IsNullOrWhiteSpace(tbxCCV.Text))
                 return "Input CCV";
-            if (tbxCustPhone.Text.Length > 15 || tbxCustPhone.Text.Length < 7)
-                return "Phone number not long enough";
+            if (tbxCustPhone.Text.Length < 7)
+                return "Phone number does not exceed minimum length";
+            if (tbxCustPhone.Text.Length > 15)
+                return "Phone number exceeds maximum length";
+            if (tbxCreditCardName.Text.Length > 30)
+                return "Credit card name exceeds maximum length";
             return ValidateCreditCard();
         }
 

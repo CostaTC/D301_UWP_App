@@ -32,7 +32,7 @@
                 <RadioButton x:Name="rboOptionOne" Content="option one" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Checked="changeSecondary" Grid.Column="1"/>
                 <RadioButton x:Name="rboOptionTwo" Content="option two" HorizontalAlignment="Center" Margin="0,70,0,0" VerticalAlignment="Top" Checked="changeSecondary" Grid.Column="1"/>
                 <RadioButton x:Name="rboOptionThree" Content="option three" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Checked="changeSecondary" Grid.Column="1"/>
-                <TextBlock x:Name="txtMealPrice" TextAlignment="Center" Margin="1,130,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Grid.Column="1"/>
+                <TextBlock x:Name="txtMealPrice" TextAlignment="Center" Margin="1,130,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Grid.Column="1" FontWeight="Bold"/>
                 <Button x:Name="btnAddToOrder" Content="Add to Order" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Bottom" Width="174" Click="btnAddToOrder_Click" Grid.Column="1" BorderBrush="Transparent" Background="#FF14F95D"/>
 
                 <!-- Step 3-->
