@@ -18,7 +18,7 @@
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
 
-        <GridView x:Name="grvTop" Margin="10,10,10,0" VerticalAlignment="Top" Height="288" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2">
+        <GridView x:Name="grvTop" Margin="10,10,10,0" VerticalAlignment="Top" Height="288" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="3">
             <Image x:Name="image" Height="211"  Source="ms-appx:///Assets/MyAssets/LunchToGo.png"  Width="598" HorizontalAlignment="Center" />
         </GridView>
 

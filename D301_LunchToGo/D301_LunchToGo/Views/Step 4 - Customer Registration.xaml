@@ -35,11 +35,6 @@
             </Grid>
 
 
-
-
-
-
-
             <Grid x:Name="gridView" Margin="123,0,136,0">
                 <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Stretch" Click="btnNext_Click" Width="110" Height="37"/>
                 <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="btnBack_Click" Width="110"/>

@@ -105,6 +105,12 @@ namespace D301_LunchToGo
         /// <returns>True if all fields are correctly entered into</returns>
         private string CheckFields()
         {
+            // Trim fields
+            tbxCustName.Text = tbxCustName.Text.Trim();
+            tbxCustAddr.Text = tbxCustAddr.Text.Trim();
+            tbxCustPhone.Text = tbxCustPhone.Text.Trim();
+            tbxCustCity.Text = tbxCustCity.Text.Trim();
+
             // Check all fields to ensure their validity
             if (String.IsNullOrEmpty(tbxCustName.Text) || String.IsNullOrWhiteSpace(tbxCustName.Text))
                 return "Input Customer Name";
@@ -120,6 +126,8 @@ namespace D301_LunchToGo
                 return "Input Customer City";
             if (String.IsNullOrEmpty(tbxCCV.Text) || String.IsNullOrWhiteSpace(tbxCCV.Text))
                 return "Input CCV";
+            if (tbxCustPhone.Text.Length > 15 || tbxCustPhone.Text.Length < 7)
+                return "Phone number not long enough";
             return ValidateCreditCard();
         }
 
