@@ -107,8 +107,8 @@
     <Compile Include="Views\Step 4 - Customer Registration.xaml.cs">
       <DependentUpon>Step 4 - Customer Registration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Step 1 - StartPage.xaml.cs">
-      <DependentUpon>Step 1 - StartPage.xaml</DependentUpon>
+    <Compile Include="Views\Step 1 - Start Page.xaml.cs">
+      <DependentUpon>Step 1 - Start Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Step 3 - Region Select.xaml.cs">
@@ -159,7 +159,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Step 1 - StartPage.xaml">
+    <Page Include="Views\Step 1 - Start Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

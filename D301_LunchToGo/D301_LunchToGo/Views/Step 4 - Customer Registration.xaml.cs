@@ -112,19 +112,19 @@ namespace D301_LunchToGo
             tbxCustCity.Text = tbxCustCity.Text.Trim();
 
             // Check all fields to ensure their validity
-            if (String.IsNullOrEmpty(tbxCustName.Text) || String.IsNullOrWhiteSpace(tbxCustName.Text))
+            if (String.IsNullOrWhiteSpace(tbxCustName.Text))
                 return "Input Customer Name";
-            if (String.IsNullOrEmpty(tbxCustAddr.Text) || String.IsNullOrWhiteSpace(tbxCustAddr.Text))
+            if (String.IsNullOrWhiteSpace(tbxCustAddr.Text))
                 return "Input Customer Address";
-            if (String.IsNullOrEmpty(tbxCustPhone.Text) || String.IsNullOrWhiteSpace(tbxCustPhone.Text))
+            if (String.IsNullOrWhiteSpace(tbxCustPhone.Text))
                 return "Input Customer Phone";
-            if (String.IsNullOrEmpty(tbxCreditCardName.Text) || String.IsNullOrWhiteSpace(tbxCreditCardName.Text))
+            if (String.IsNullOrWhiteSpace(tbxCreditCardName.Text))
                 return "Input Credit Card Name";
-            if (String.IsNullOrEmpty(tbxCreditCardNumber.Text) || String.IsNullOrWhiteSpace(tbxCreditCardNumber.Text))
+            if (String.IsNullOrWhiteSpace(tbxCreditCardNumber.Text))
                 return "Input Credit Card Number";
-            if (String.IsNullOrEmpty(tbxCustCity.Text) || String.IsNullOrWhiteSpace(tbxCustCity.Text))
+            if (String.IsNullOrWhiteSpace(tbxCustCity.Text))
                 return "Input Customer City";
-            if (String.IsNullOrEmpty(tbxCCV.Text) || String.IsNullOrWhiteSpace(tbxCCV.Text))
+            if (String.IsNullOrWhiteSpace(tbxCCV.Text))
                 return "Input CCV";
             if (tbxCustPhone.Text.Length > 15 || tbxCustPhone.Text.Length < 7)
                 return "Phone number not long enough";
@@ -296,7 +296,10 @@ namespace D301_LunchToGo
             {
                 OrderManager.CreditCardValid = false;
                 var messageDialog = new Windows.UI.Popups.MessageDialog(validRegistration, "Error");
-                messageDialog.Commands.Add(new Windows.UI.Popups.UICommand { Label = "Ok", Id = 0 });
+                messageDialog.Commands.Add(new Windows.UI.Popups.UICommand
+                {
+                    Label = "Ok", Id = 0
+                });
                 await messageDialog.ShowAsync();
             }
         }
