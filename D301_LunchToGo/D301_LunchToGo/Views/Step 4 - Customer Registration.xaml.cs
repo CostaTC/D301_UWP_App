@@ -140,9 +140,12 @@ namespace D301_LunchToGo
             // Remove non numbers from credit card field and check length
             string cc = CleanString(tbxCreditCardNumber.Text);
             if (cc.Length <= 12 && cc.Length > 19)
-                return "Credit Card Number is incorrect";
+                return "Credit Card Number too short";
             else
                 tbxCreditCardNumber.Text = cc;
+
+            if (!HasCreditCardNumber(cc))
+                return "Credit Card is incorrect";
 
             // Remove any non numbers from CCV and check length
             cc = CleanString(tbxCCV.Text);
@@ -171,6 +174,22 @@ namespace D301_LunchToGo
                 return "Unable to use Credit Card - it has expired";
 
             return "Success";
+        }
+
+        // Compares input string to credit card regex and returns whether or not credit card was valid
+        public bool HasCreditCardNumber(string input)
+        {
+            string[] Patterns = new string[] { "4[0-9]{12}(?:[0-9]{3})?", "5[1-5][0-9]{14}", "3[47][0-9]{13}", "3(?:0[0-5]|[68][0-9])[0-9]{11}", "6(?:011|5[0-9]{2})[0-9]{12}", "(?:2131|1800|35\\d{3})\\d{11}" };
+
+            foreach (var pattern in Patterns)
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(input, pattern, System.Text.RegularExpressions.RegexOptions.Multiline))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
 
