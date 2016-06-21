@@ -76,13 +76,10 @@ namespace D301_LunchToGo
         private void CheckDate()
         {
             // If before 10:30am then can order now else min date is set to next day
-            if (DateTime.Now.Hour <= 10)
+            if ((DateTime.Now.Hour == 10 && DateTime.Now.Minute <= 30) || DateTime.Now.Hour < 10)
             {
-                if (DateTime.Now.Minute <= 30)
-                {
-                    cdpDatePicker.MinDate = DateTime.Now;
-                    return;
-                }
+                cdpDatePicker.MinDate = DateTime.Now;
+                return;
             }
 
             cdpDatePicker.MinDate = DateTime.Now.AddDays(1);
