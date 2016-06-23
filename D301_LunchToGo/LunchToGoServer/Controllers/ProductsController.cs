@@ -151,7 +151,7 @@ namespace LunchToGoServer.Controllers
                             sc.ExecuteScalar();
                         }
                         catch { }
-                        
+
                     }
 
                     conn.Close();
