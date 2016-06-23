@@ -9,6 +9,7 @@ using System.Linq;
 using System.Collections;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using D301_LunchToGo.Models;
 
 namespace UnitTester
 {
@@ -17,6 +18,29 @@ namespace UnitTester
     {
         SQLiteConnection conn;
         private string path;
+
+        /// <summary>
+        /// Tests the credit card checker
+        /// </summary>
+        [TestMethod]
+        public void TestCreditCard()
+        {
+            bool ccValid = false; 
+
+            string input = "4444432114321432";
+
+            string[] Patterns = new string[] { "4[0-9]{12}(?:[0-9]{3})?", "5[1-5][0-9]{14}", "3[47][0-9]{13}", "3(?:0[0-5]|[68][0-9])[0-9]{11}", "6(?:011|5[0-9]{2})[0-9]{12}", "(?:2131|1800|35\\d{3})\\d{11}" };
+
+            foreach (var pattern in Patterns)
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(input, pattern, System.Text.RegularExpressions.RegexOptions.Multiline))
+                {
+                    ccValid = true;
+                }
+            }
+
+            Assert.AreEqual(true, ccValid);
+        }
 
         /// <summary>
         /// Checks whether registering account correctly goes to database
@@ -71,7 +95,7 @@ namespace UnitTester
         [TestMethod]
         public void MealOptions()
         {
-            Meal m = new Meal("Toast", "Butter");
+            Meal m = new Meal("Toast", "Butter", 1);
             OrderManager.AddMeal(m);
             Assert.AreEqual("Toast", OrderManager.Meals.First().Dish);
         }
@@ -84,7 +108,7 @@ namespace UnitTester
         {
             bool result = false;
 
-            Meal m = new Meal("Toast", "Butter");
+            Meal m = new Meal("Toast", "Butter",1);
             OrderManager.AddMeal(m);
 
             // If the user has items in the cart then they can place the order else return false
