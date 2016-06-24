@@ -20,10 +20,10 @@ namespace UnitTester
         private string path;
 
         /// <summary>
-        /// Tests the credit card checker
+        /// Tests the credit card checker should work
         /// </summary>
         [TestMethod]
-        public void TestCreditCard()
+        public void RealCreditCard()
         {
             bool ccValid = false; 
 
@@ -40,6 +40,29 @@ namespace UnitTester
             }
 
             Assert.AreEqual(true, ccValid);
+        }
+
+        /// <summary>
+        /// Tests the credit card checker should not work
+        /// </summary>
+        [TestMethod]
+        public void FakeCreditCard()
+        {
+            bool ccValid = false;
+
+            string input = "1111111111111111";
+
+            string[] Patterns = new string[] { "4[0-9]{12}(?:[0-9]{3})?", "5[1-5][0-9]{14}", "3[47][0-9]{13}", "3(?:0[0-5]|[68][0-9])[0-9]{11}", "6(?:011|5[0-9]{2})[0-9]{12}", "(?:2131|1800|35\\d{3})\\d{11}" };
+
+            foreach (var pattern in Patterns)
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(input, pattern, System.Text.RegularExpressions.RegexOptions.Multiline))
+                {
+                    ccValid = true;
+                }
+            }
+
+            Assert.AreEqual(false, ccValid);
         }
 
         /// <summary>
