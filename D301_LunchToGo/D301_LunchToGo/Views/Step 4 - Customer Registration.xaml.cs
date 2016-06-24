@@ -28,7 +28,7 @@ namespace D301_LunchToGo
     public sealed partial class StepFour : Page
     {
 
-        // Connection for SQL server
+        // Connection variables for SQLite
         SQLiteConnection conn;
         private string path;
 
@@ -36,10 +36,6 @@ namespace D301_LunchToGo
         {
             this.InitializeComponent();
             SetupPage();
-
-            // Setup database
-            
-            //    conn.CreateTable<CustomerDetailsDB>();
         }
 
         /// <summary>
