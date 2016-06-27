@@ -79,10 +79,12 @@ namespace D301_LunchToGo
             if ((DateTime.Now.Hour == 10 && DateTime.Now.Minute <= 30) || DateTime.Now.Hour < 10)
             {
                 cdpDatePicker.MinDate = DateTime.Now;
+                cdpDatePicker.Date = DateTime.Now;
                 return;
             }
 
             cdpDatePicker.MinDate = DateTime.Now.AddDays(1);
+            cdpDatePicker.Date = DateTime.Now.AddDays(1);
 
         }
 
@@ -111,8 +113,16 @@ namespace D301_LunchToGo
         // Set date to what the user selects
         private void cdpDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
-            DateTimeOffset dt = (DateTimeOffset)cdpDatePicker.Date;
-            OrderManager.DeliveryDate = dt.DateTime;
+            try
+            {
+                DateTimeOffset dt = (DateTimeOffset)cdpDatePicker.Date;
+                OrderManager.DeliveryDate = dt.DateTime;
+            }
+            catch
+            {
+
+            }
+            
         }
     }
 }
